@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Imaginta Website
 
-## Getting Started
+Marketing site for Imaginta, a multimedia digital agency based in Belgium. Built with Next.js 14 (App Router), Tailwind CSS, Framer Motion, and Next SEO.
 
-First, run the development server:
+### Tech Stack
+
+- Next.js 14 + TypeScript
+- Tailwind CSS
+- Framer Motion
+- next-seo
+- react-hook-form
+
+### Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Useful Commands
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start dev server |
+| `npm run lint` | Run ESLint |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Project Structure
 
-## Learn More
+- `app/` – App Router pages and metadata
+- `components/` – Layout, sections, UI primitives, SEO helpers
+- `lib/` – Utilities (form validation, analytics placeholder)
+- `public/` – Static assets
+- `DEPLOYMENT.md` – Hosting instructions
 
-To learn more about Next.js, take a look at the following resources:
+### Pre-deployment Checklist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+☐ Run npm run build && npm run start (all routes OK)
+☐ Verify navigation, forms, chat widget, and CTAs
+☐ Test responsive layouts (mobile, tablet, desktop)
+☐ Confirm SEO metadata, OpenGraph, and Twitter tags
+☐ Validate accessibility (keyboard nav, aria-live, contrast)
+☐ Audit with Lighthouse (Performance/Accessibility/Best Practices/SEO ≥ 90)
+☐ Check /sitemap.xml and /robots.txt
+☐ Replace analytics & chat placeholders with production services
+☐ Ensure .env.local contains production secrets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+See `DEPLOYMENT.md` for Vercel deployment details.
