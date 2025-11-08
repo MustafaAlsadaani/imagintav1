@@ -15,8 +15,6 @@ export const InteractiveCard = React.forwardRef<HTMLDivElement, InteractiveCardP
 
     React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
 
-    const Component = asMotion ? motion.div : "div";
-
     const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
       if (prefersReducedMotion) return;
       const node = containerRef.current;
@@ -41,16 +39,25 @@ export const InteractiveCard = React.forwardRef<HTMLDivElement, InteractiveCardP
       onPointerLeave?.(event);
     };
 
+    const sharedProps = {
+      ref: containerRef as React.Ref<HTMLDivElement>,
+      className: cn("premium-card card-magnetic card-shine", className),
+      onPointerMove: handlePointerMove,
+      onPointerLeave: handlePointerLeave,
+    };
+
+    if (asMotion) {
+      return (
+        <motion.div {...sharedProps} {...(props as any)}>
+          {children}
+        </motion.div>
+      );
+    }
+
     return (
-      <Component
-        ref={containerRef as React.Ref<HTMLDivElement>}
-        className={cn("premium-card card-magnetic card-shine", className)}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
-        {...props}
-      >
+      <div {...sharedProps} {...props}>
         {children}
-      </Component>
+      </div>
     );
   }
 );
