@@ -112,8 +112,8 @@ export default function AboutHero() {
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-5 text-sm text-white/70">
-              "Imaginta directed our brand relaunch like a film production—chaptered storytelling, flawless builds, and growth that kept
-              accelerating months after the premiere."
+              &ldquo;Imaginta directed our brand relaunch like a film production—chaptered storytelling, flawless builds, and growth that kept
+              accelerating months after the premiere.&rdquo;
               <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/45">Chief Experience Officer · Global SaaS</p>
             </div>
           </div>
