@@ -2,7 +2,7 @@
 
 import { type ReactNode, useRef } from "react";
 import type { HTMLMotionProps } from "framer-motion";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface MagneticContainerProps extends HTMLMotionProps<"div"> {
@@ -26,8 +26,10 @@ export default function MagneticContainer({
   const rotateY = useSpring(0, { stiffness: 160, damping: 12 });
   const translateX = useSpring(motionX, { stiffness: 200, damping: 20 });
   const translateY = useSpring(motionY, { stiffness: 200, damping: 20 });
+  const prefersReducedMotion = useReducedMotion();
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion) return;
     const bounds = containerRef.current?.getBoundingClientRect();
     if (!bounds) return;
     const offsetX = event.clientX - (bounds.left + bounds.width / 2);
@@ -42,6 +44,7 @@ export default function MagneticContainer({
   };
 
   const reset = () => {
+    if (prefersReducedMotion) return;
     motionX.set(0);
     motionY.set(0);
     rotateX.set(0);
@@ -51,8 +54,8 @@ export default function MagneticContainer({
   return (
     <motion.div
       ref={containerRef}
-      className={cn("[perspective:1200px]", className)}
-      style={{ rotateX, rotateY, x: translateX, y: translateY }}
+      className={cn(prefersReducedMotion ? "" : "[perspective:1200px]", className)}
+      style={prefersReducedMotion ? undefined : { rotateX, rotateY, x: translateX, y: translateY }}
       onPointerMove={handlePointerMove}
       onPointerLeave={reset}
       {...props}

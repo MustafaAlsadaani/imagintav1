@@ -1,28 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaRocket, FaChartLine, FaUsers, FaShieldAlt } from "react-icons/fa";
+import { FaRocket, FaBullseye, FaHandsHelping, FaLock } from "react-icons/fa";
 
 const features = [
   {
-    icon: FaChartLine,
-    title: "Holistic Approach",
-    description: "All services under one roof for seamless integration.",
+    icon: FaBullseye,
+    title: "Clear focus",
+    description: "Every plan links to a real business goal so you can track wins easily.",
   },
   {
-    icon: FaUsers,
-    title: "Client-Focused",
-    description: "Your success is our success, every step of the way.",
+    icon: FaHandsHelping,
+    title: "Friendly guidance",
+    description: "We walk beside you, explain each step, and share quick how-to videos.",
   },
   {
-    icon: FaShieldAlt,
-    title: "Security First",
-    description: "Enterprise-grade protection for businesses of all sizes.",
-  },
-  {
-    icon: FaRocket,
-    title: "Results Driven",
-    description: "We measure success by your growth and ROI.",
+    icon: FaLock,
+    title: "Security built in",
+    description: "Protect your data, follow GDPR, and sleep easy knowing everything is monitored.",
   },
 ];
 
@@ -44,17 +39,13 @@ export default function WinningRace() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <h2 className="text-3xl font-bold sm:text-4xl text-foreground">
-            Why Businesses Choose <span className="text-primary">Imaginta</span>
+        <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <h2 className="text-3xl font-bold sm:text-4xl">
+            Winning the race is easier when you have a proven playbook.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            We don&apos;t just provide services – we build the foundation for you to win the digital race.
+            In business, it&apos;s a race. We give you the edge with proven tools and a partner who translates tech into everyday
+            language. Benefit: outpace competitors without the hassle.
           </p>
 
           <div className="mt-10 space-y-6">
@@ -65,17 +56,21 @@ export default function WinningRace() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group flex items-start gap-4 rounded-2xl border border-dark-border bg-dark-lighter p-5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
+                className="group flex items-start gap-4 rounded-2xl border border-dark-border bg-dark-lighter p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10"
               >
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30 group-hover:scale-110 transition-all duration-300">
                   <feature.icon className="h-7 w-7" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
+                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
+            <div className="rounded-2xl border border-primary/25 bg-primary/10 p-5 text-sm text-primary">
+              <strong>Quick win:</strong> Many clients see faster results simply because they finally have one plan, one dashboard, and
+              one friendly team answering questions in minutes.
+            </div>
           </div>
         </motion.div>
       </div>

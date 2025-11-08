@@ -1,124 +1,109 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { FaCheck, FaStar, FaTimes } from "react-icons/fa";
+import { motion, useReducedMotion } from "framer-motion";
+import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
-import { cn } from "@/lib/utils";
-import PricingToggle from "@/components/ui/PricingToggle";
+import Link from "next/link";
 
-export interface PricingTier {
-  name: string;
-  priceRange: string;
-  description: string;
-  timeline: string;
-  features: string[];
-  exclusions?: string[];
-  popular?: boolean;
-}
+const PLAN_FEATURES = [
+  "Quarterly roadmap strategy and leadership support",
+  "Design, development, and growth execution in unified sprints",
+  "Partner and vendor coordination handled by Imaginta",
+  "Performance dashboards and monthly optimisation rituals",
+  "Security reviews, backups, and ongoing maintenance",
+  "90-day post-launch optimisation for major releases",
+];
 
-interface ServicePricingProps {
-  tiers: PricingTier[];
-}
-
-export default function ServicePricing({ tiers }: ServicePricingProps) {
-  const [selected, setSelected] = useState<number | null>(null);
-  const [mode, setMode] = useState<"project" | "retainer">("project");
+export default function ServicePricing() {
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="bg-gradient-to-b from-background-secondary to-background py-24">
-      <div className="mx-auto max-w-7xl px-4">
+    <section className="relative overflow-hidden bg-gradient-to-br from-background-secondary via-background to-background py-28">
+      <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(circle_at_15%_20%,rgba(248,113,113,0.45),transparent_60%),radial-gradient(circle_at_80%_15%,rgba(34,211,238,0.35),transparent_60%)]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
         <motion.div
-          className="mb-12 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left"
+          className="mx-auto max-w-3xl text-center"
           variants={fadeInUp}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div>
-            <h3 className="text-3xl font-heading font-bold text-foreground sm:text-4xl">
-              Transparent Pricing, Tailored Engagements
-            </h3>
-            <p className="mt-3 max-w-xl text-foreground-secondary">
-              Choose the partnership level that matches your goals. Toggle between project engagements and monthly retainers.
-            </p>
-          </div>
-          <PricingToggle value={mode} onChange={setMode} />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-orange-200/90">
+            Yearly partnership
+          </span>
+          <h2 className="mt-6 text-balance text-4xl font-heading font-semibold text-white sm:text-5xl">
+            One plan. Everything you need for the next 12 months.
+          </h2>
+          <p className="mt-4 text-lg text-foreground-secondary">
+            Forget juggling proposals, vendors, and surprise costs. Imaginta’s €1,999 yearly partnership gives you the team, process,
+            and ownership to build and grow confidently.
+          </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {tiers.map((tier, index) => (
-            <motion.div
-              key={tier.name}
-              className={cn(
-                "glass-card relative flex h-full flex-col rounded-3xl p-8 transition-transform duration-500",
-                tier.popular && "border-2 border-electric shadow-glow-electric",
-              )}
-              whileHover={{ y: -12, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 160, damping: 20, delay: index * 0.05 }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              {tier.popular && (
-                <div className="absolute right-0 top-0 inline-flex items-center gap-2 rounded-bl-3xl rounded-tr-3xl bg-electric px-5 py-2 text-sm font-semibold text-white">
-                  <FaStar className="h-4 w-4" /> Most popular
-                </div>
-              )}
-              <div className="space-y-4">
-                <h4 className="text-2xl font-heading font-bold text-foreground">{tier.name}</h4>
-                <div className="text-4xl font-heading font-bold text-gradient">
-                  {mode === "project" ? tier.priceRange : `${tier.priceRange} / month`}
-                </div>
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-foreground-muted">{tier.timeline}</p>
-                <p className="text-sm leading-relaxed text-foreground-secondary">{tier.description}</p>
-              </div>
+        <motion.div
+          className="mt-14 grid gap-8 rounded-[32px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 40 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <div className="space-y-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground-muted">Investment</p>
+              <div className="mt-2 text-5xl font-heading font-semibold text-gradient">€1,999 / year</div>
+              <p className="mt-3 text-sm text-foreground-secondary">
+                Flat annual budget, no retainers, no hourly surprises. Split payment available (60% kickoff, 40% mid-year).
+              </p>
+            </div>
 
-              <ul className="mt-8 space-y-3 text-sm text-foreground-secondary">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-neon/15 text-neon">
-                      <FaCheck className="h-3.5 w-3.5" />
-                    </span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-                {tier.exclusions?.map((exclusion) => (
-                  <li key={exclusion} className="flex items-start gap-3 text-foreground-muted">
-                    <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-foreground-muted">
-                      <FaTimes className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="line-through">{exclusion}</span>
-                  </li>
-                ))}
-              </ul>
+            <ul className="space-y-3 text-sm text-foreground-secondary">
+              {PLAN_FEATURES.map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-neon">
+                    <FaCheckCircle className="h-4 w-4" />
+                  </span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
 
-              <div className="mt-8 flex-1">
-                <Button
-                  variant={tier.popular ? "gradient" : "glass"}
-                  className="w-full"
-                  onClick={() => setSelected(selected === index ? null : index)}
-                >
-                  {selected === index ? "Hide Details" : "Choose Plan"}
-                </Button>
-                <AnimatePresence initial={false}>
-                  {selected === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="glass-card mt-4 rounded-2xl p-4 text-xs text-foreground-secondary"
-                    >
-                      Let’s lock in scope and deliverables. We’ll tailor this package to your roadmap within 48 hours.
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            <div className="rounded-2xl border border-white/12 bg-black/30 p-6 text-sm text-foreground-secondary">
+              <p>
+                We work as an embedded partner. You’ll have a shared backlog, weekly check-ins, and transparent reporting so leaders
+                stay informed and teams stay aligned.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-between gap-8 rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-sm text-foreground-secondary">
+            <div className="space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground-muted">What to expect</p>
+              <p>
+                <strong className="text-white">Kickoff week:</strong> workshop, backlog, data setup, partner access.
+              </p>
+              <p>
+                <strong className="text-white">Month 1:</strong> first sprint ships a high-impact deliverable (website update, funnel launch, or brand refresh).
+              </p>
+              <p>
+                <strong className="text-white">Quarterly:</strong> roadmap review, performance deep-dive, and priority resets.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground-muted">Availability</p>
+              <p>We partner with 6 teams per year to keep delivery sharp. Reserve with a €500 commitment applied to the plan.</p>
+            </div>
+
+            <Button asChild variant="gradient" size="lg" className="rounded-full px-8 py-4 text-base">
+              <Link href="/contact" className="flex items-center justify-center gap-2">
+                Start the partnership <FaArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

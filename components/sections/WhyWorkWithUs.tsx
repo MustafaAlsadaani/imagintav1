@@ -1,100 +1,125 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import GradientOrb from "@/components/ui/GradientOrb";
-import DecorativeLine from "@/components/ui/DecorativeLine";
-import { cn } from "@/lib/utils";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
-const STATS = [
-  { number: 100, suffix: "+", label: "Projects Delivered", icon: "🚀", color: "electric" },
-  { number: 50, suffix: "+", label: "Happy Clients", icon: "🎯", color: "cyber" },
-  { number: 15, suffix: "", label: "Countries Served", icon: "🌍", color: "neon" },
-  { number: 99, suffix: "%", label: "Client Satisfaction", icon: "⭐", color: "accent" },
+const IMPACT_STATS = [
+  {
+    label: "Launches directed",
+    value: "108",
+    caption: "Every release treated like a premiere, with measurable growth loops built in.",
+  },
+  {
+    label: "Partner alliances",
+    value: "7",
+    caption: "Shopify, Google, Microsoft, HubSpot, and more—approvals and betas fast-tracked.",
+  },
+  {
+    label: "Client satisfaction",
+    value: "98%",
+    caption: "Post-launch surveys from founders and marketing leaders worldwide.",
+  },
+  {
+    label: "Response window",
+    value: "< 24h",
+    caption: "Escalations resolved inside one business day across timezones.",
+  },
 ];
 
-const COLOR_MAP: Record<string, string> = {
-  electric: "shadow-glow-electric",
-  cyber: "shadow-glow-cyber",
-  neon: "shadow-glow-neon",
-  accent: "shadow-[0_0_28px_rgba(236,72,153,0.35)]",
-};
-
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { stiffness: 80, damping: 20 });
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-  }, [isInView, motionValue, value]);
-
-  useEffect(() => {
-    return spring.on("change", (latest) => {
-      if (ref.current) {
-        ref.current.textContent = `${Math.round(latest)}${suffix}`;
-      }
-    });
-  }, [spring, suffix]);
-
-  return <span ref={ref} className="tabular-nums" />;
-}
+const PROOF_POINTS = [
+  {
+    headline: "Retail collective",
+    metric: "+40% revenue",
+    blurb: "Orchestrated rebrand, ecommerce rebuild, and growth loops that kept sales climbing quarter over quarter.",
+  },
+  {
+    headline: "B2B SaaS",
+    metric: "21-day rollout",
+    blurb: "Migrated from legacy stack, launched new product marketing, and trained GTM teams in under a month.",
+  },
+  {
+    headline: "Hospitality group",
+    metric: "3.5h saved weekly",
+    blurb: "Partner playbooks and enablement hub removed admin overhead while keeping quality untouched.",
+  },
+];
 
 export default function WhyWorkWithUs() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="relative overflow-hidden bg-background py-32">
-      <GradientOrb color="electric" size="lg" className="left-[-10%] top-[20%]" />
-      <GradientOrb color="cyber" size="md" className="right-[-15%] bottom-[15%]" />
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,rgba(236,72,153,0.15),transparent_55%),radial-gradient(circle_at_bottom,rgba(14,165,233,0.15),transparent_60%),#05030e] py-28 lg:py-32">
+      <GradientOrb color="electric" size="lg" className="left-[-14%] top-[18%] opacity-70" />
+      <GradientOrb color="cyber" size="md" className="right-[-16%] bottom-[10%] opacity-60" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4">
-        <div className="text-center">
-          <motion.h2
-            className="text-4xl font-heading font-bold text-foreground md:text-5xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            By The <span className="text-gradient">Numbers</span>
-          </motion.h2>
-          <div className="mt-6 flex justify-center">
-            <DecorativeLine gradient="aurora" align="center" />
-          </div>
-          <motion.p
-            className="mx-auto mt-6 max-w-2xl text-lg text-foreground-secondary"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            Proof that imagination plus precision delivers transformative outcomes.
-          </motion.p>
-        </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-5 text-white">
+        <motion.div
+          className="text-center"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h2 className="text-4xl font-heading font-bold md:text-5xl lg:text-[3rem]">Why teams stay with Imaginta</h2>
+          <p className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg">
+            Our impact blends blockbuster launches with relentless follow-through. Here is what the numbers and stories look like side by
+            side.
+          </p>
+        </motion.div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {STATS.map((stat, index) => (
+        <div className="mt-16 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <WarmSpotlight intensity={0.7}>
             <motion.div
-              key={stat.label}
-              className={cn("glass-card rounded-2xl p-8 text-center", COLOR_MAP[stat.color])}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
+              className="grid gap-6 rounded-[36px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-2xl sm:grid-cols-2"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
             >
-              <span className="text-5xl" role="img" aria-label={stat.label}>
-                {stat.icon}
-              </span>
-              <div className="mt-4 text-5xl font-heading font-bold text-gradient">
-                <AnimatedCounter value={stat.number} suffix={stat.suffix} />
-              </div>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.35em] text-foreground-muted">
-                {stat.label}
-              </p>
+              {IMPACT_STATS.map((stat) => (
+                <div key={stat.label} className="rounded-3xl border border-white/12 bg-white/10 p-6 text-left text-sm text-white/75">
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">{stat.label}</p>
+                  <p className="mt-3 text-3xl font-heading font-semibold text-white">{stat.value}</p>
+                  <p className="mt-3 text-white/65">{stat.caption}</p>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </WarmSpotlight>
+
+          <div className="space-y-6">
+            {PROOF_POINTS.map((point, index) => (
+              <WarmSpotlight key={point.headline} intensity={0.65}>
+                <motion.article
+                  className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-left text-sm text-white/75 backdrop-blur-xl"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
+                >
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                    <span>{point.headline}</span>
+                    <span className="text-orange-200/80">{point.metric}</span>
+                  </div>
+                  <p className="mt-3 text-white/65">{point.blurb}</p>
+                </motion.article>
+              </WarmSpotlight>
+            ))}
+
+            <WarmSpotlight intensity={0.6}>
+              <motion.div
+                className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-sm text-white/70 backdrop-blur-xl"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.45 }}
+                transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
+              >
+                “Imaginta combines the sensitivity of a branding agency with the precision of a product team. They pull partners into the
+                conversation, instrument every touchpoint, and keep momentum strong after launch.”
+                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">Chief Marketing Officer · Retail Group</p>
+              </motion.div>
+            </WarmSpotlight>
+          </div>
         </div>
       </div>
     </section>

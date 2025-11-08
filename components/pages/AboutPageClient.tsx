@@ -3,14 +3,12 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import PageTransition from "@/components/layout/PageTransition";
-import AboutHero from "@/components/sections/AboutHero";
-import OurStory from "@/components/sections/OurStory";
-import MissionVisionValues from "@/components/sections/MissionVisionValues";
-import OurCulture from "@/components/sections/OurCulture";
-import Team from "@/components/sections/Team";
-import OurApproach from "@/components/sections/OurApproach";
-import WhyWorkWithUs from "@/components/sections/WhyWorkWithUs";
-import CTASection from "@/components/sections/CTASection";
+import AboutSpotlight from "@/components/sections/AboutSpotlight";
+import AboutEssence from "@/components/sections/AboutEssence";
+import AboutMethodology from "@/components/sections/AboutMethodology";
+import AboutCollective from "@/components/sections/AboutCollective";
+import AboutAllies from "@/components/sections/AboutAllies";
+import AboutCTA from "@/components/sections/AboutCTA";
 
 export default function AboutPageClient() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -24,14 +22,12 @@ export default function AboutPageClient() {
           className="pointer-events-none fixed inset-x-0 top-[72px] z-30 h-0.5 origin-left bg-gradient-aurora"
           style={{ scaleX: progress }}
         />
-        <AboutHero />
-        <OurStory />
-        <MissionVisionValues />
-        <OurCulture />
-        <Team />
-        <OurApproach />
-        <WhyWorkWithUs />
-        <CTASection />
+        <AboutSpotlight />
+        <AboutEssence />
+        <AboutMethodology />
+        <AboutCollective />
+        <AboutAllies />
+        <AboutCTA />
       </div>
     </PageTransition>
   );

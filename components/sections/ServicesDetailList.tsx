@@ -1,118 +1,124 @@
 "use client";
 
-import { FaBullhorn, FaChartLine, FaCode, FaPalette, FaShieldAlt } from "react-icons/fa";
-import ServiceShowcase from "@/components/sections/ServiceShowcase";
+import { motion, useReducedMotion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
-const services = [
+const CAPABILITIES = [
   {
-    id: "01",
-    icon: FaCode,
-    title: "Web Development",
-    tagline: "Build. Scale. Dominate.",
-    description:
-      "Custom websites and applications engineered for speed, accessibility, and effortless content control. From marketing sites to product platforms, we deliver experiences that convert and scale.",
-    features: [
-      "Custom Architecture",
-      "Performance Optimization",
-      "Mobile First",
-      "SEO Foundation",
-      "Scalable Infrastructure",
-      "Security Built-in",
-    ],
-    benefits: ["Headless ready", "CMS training", "Launch support"],
-    priceRange: "€2,500 - €25,000+",
-    gradient: "from-electric to-cyber",
-    align: "left" as const,
+    title: "Strategy Pods",
+    summary: "Quarterly plans, budgeting, and leadership support keep every initiative pointed at measurable growth.",
+    items: ["Roadmaps & OKRs", "Market and competitor scans", "Stakeholder alignment", "Fractional leadership"],
   },
   {
-    id: "02",
-    icon: FaBullhorn,
-    title: "Digital Marketing",
-    tagline: "Amplify. Engage. Convert.",
-    description:
-      "Full-funnel growth programs that combine SEO, paid acquisition, lifecycle marketing, and content into one cohesive engine. Data-led strategy with creative that resonates.",
-    features: [
-      "SEO & Content",
-      "Paid Acquisition",
-      "Social Strategy",
-      "Lifecycle Automation",
-      "Analytics & Dashboards",
-      "Conversion Optimisation",
-    ],
-    benefits: ["Weekly insights", "Campaign creative", "ROAS tracking"],
-    priceRange: "€1,500/mo+",
-    gradient: "from-cyber to-neon",
-    align: "right" as const,
+    title: "Brand & Creative",
+    summary: "Visual systems, campaign assets, and motion delivered with templates your team can reuse instantly.",
+    items: ["Identity & guidelines", "Product UI libraries", "Video & motion", "Sales collateral"],
   },
   {
-    id: "03",
-    icon: FaPalette,
-    title: "Creative Design",
-    tagline: "Design. Inspire. Captivate.",
-    description:
-      "Brand identities and product interfaces that balance storytelling with usability. We craft style guides, design systems, and immersive visuals built to scale across channels.",
-    features: [
-      "Brand Identity",
-      "UI/UX Design",
-      "Design Systems",
-      "Motion Graphics",
-      "Marketing Collateral",
-      "Guidelines & Templates",
-    ],
-    benefits: ["Workshop series", "Prototype demos", "Asset libraries"],
-    priceRange: "€2,500 - €15,000",
-    gradient: "from-neon to-accent",
-    align: "left" as const,
+    title: "Engineering",
+    summary: "Design-to-code delivery across web apps, marketing sites, and integrations—secure, performant, accessible.",
+    items: ["Next.js builds", "Automation & integrations", "CMS setups", "Performance + QA"],
   },
   {
-    id: "04",
-    icon: FaChartLine,
-    title: "Business Strategy",
-    tagline: "Plan. Execute. Grow.",
-    description:
-      "Strategic leadership on demand. We map opportunity, prioritise investments, and align teams around clear roadmaps that drive sustainable growth and measurable impact.",
-    features: [
-      "Market Research",
-      "Growth Frameworks",
-      "Competitive Analysis",
-      "Budget Planning",
-      "KPI Dashboards",
-      "Leadership Advisory",
-    ],
-    benefits: ["Quarterly reviews", "Hiring support", "Stakeholder alignment"],
-    priceRange: "€5,000 - €20,000",
-    gradient: "from-accent to-electric",
-    align: "right" as const,
+    title: "Growth",
+    summary: "SEO, paid, lifecycle, and analytics under one plan so you always know which channels are working.",
+    items: ["Search & content", "Paid media orchestration", "Lifecycle automation", "Conversion optimisation"],
   },
   {
-    id: "05",
-    icon: FaShieldAlt,
-    title: "Cyber Security",
-    tagline: "Protect. Secure. Comply.",
-    description:
-      "Enterprise-grade protection and compliance programs that evolve with your threat landscape. Audits, monitoring, and response handled by certified experts.",
-    features: [
-      "Security Audits",
-      "GDPR Compliance",
-      "Threat Detection",
-      "Penetration Testing",
-      "24/7 Monitoring",
-      "Incident Response",
-    ],
-    benefits: ["Compliance support", "Managed monitoring", "Team training"],
-    priceRange: "€2,000/mo+",
-    gradient: "from-electric to-cyber",
-    align: "left" as const,
+    title: "Security & Care",
+    summary: "Resilience woven into every release—monitoring, compliance, and enablement keep momentum safe.",
+    items: ["Security reviews", "Monitoring & alerting", "Disaster recovery", "Team training"],
+  },
+];
+
+const SERVICE_EXTRAS = [
+  {
+    label: "Monthly focus",
+    detail: "Priorities stack in one shared backlog. We ship every month and review metrics together.",
+  },
+  {
+    label: "Quarterly reset",
+    detail: "Roadmaps adjust with data, not guesswork. Leadership gets a clear view of budget and progress.",
+  },
+  {
+    label: "Always-on support",
+    detail: "Slack channel, office hours, and docs keep teams informed without chasing status updates.",
   },
 ];
 
 export default function ServicesDetailList() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <div className="space-y-0 bg-background">
-      {services.map((service, index) => (
-        <ServiceShowcase key={service.id} {...service} align={service.align} />
-      ))}
-    </div>
+    <section className="relative overflow-hidden bg-background py-28">
+      <div className="absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_top,_rgba(251,191,36,0.18),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(6,182,212,0.18),_transparent_60%)]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
+        <motion.div
+          className="flex flex-col items-center gap-3 text-center"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <span className="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">What the plan includes</span>
+          <h2 className="text-balance text-4xl font-heading font-bold text-white md:text-5xl">
+            Every capability, one relationship
+          </h2>
+          <p className="mt-4 max-w-3xl text-base text-white/70 sm:text-lg">
+            We don’t sell add-ons or upsells. You get the full Imaginta squad—strategists, designers, engineers, growth leads, and
+            security specialists—inside a single plan at €1,999 per year.
+          </p>
+        </motion.div>
+
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+          {CAPABILITIES.map((capability, index) => (
+            <WarmSpotlight key={capability.title} className="h-full" intensity={0.68}>
+              <motion.article
+                className="flex h-full flex-col justify-between gap-5 rounded-3xl border border-white/12 bg-white/[0.05] p-6 text-sm text-white/75 backdrop-blur-xl"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.05, ease: "easeOut" }}
+              >
+                <div>
+                  <h3 className="text-lg font-heading font-semibold text-white">{capability.title}</h3>
+                  <p className="mt-2 text-white/65">{capability.summary}</p>
+                </div>
+                <ul className="grid gap-2 text-white/60">
+                  {capability.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 rounded-2xl border border-white/8 bg-white/5 px-3 py-2">
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-xs text-orange-200/80">
+                        <FaArrowRight className="h-3 w-3" />
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            </WarmSpotlight>
+          ))}
+        </div>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {SERVICE_EXTRAS.map((extra, index) => (
+            <WarmSpotlight key={extra.label} className="h-full" intensity={0.62}>
+              <motion.div
+                className="rounded-3xl border border-white/12 bg-white/[0.05] p-6 text-sm text-white/70 backdrop-blur-xl"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 22 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{extra.label}</p>
+                <p className="mt-3 text-white/65">{extra.detail}</p>
+              </motion.div>
+            </WarmSpotlight>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

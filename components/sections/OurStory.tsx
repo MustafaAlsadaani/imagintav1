@@ -1,128 +1,102 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FaGlobe, FaRocket, FaTrophy, FaUsers } from "react-icons/fa";
+import { motion, useReducedMotion } from "framer-motion";
 import GradientOrb from "@/components/ui/GradientOrb";
 import DecorativeLine from "@/components/ui/DecorativeLine";
-import { cn } from "@/lib/utils";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
 const MILESTONES = [
   {
     year: "2023",
-    title: "The Beginning",
-    description:
-      "Founded in Belgium with a vision to unite creative direction and engineering excellence under one roof.",
-    icon: FaRocket,
-    color: "from-electric to-cyber",
+    headline: "Imaginta ignites in Brussels",
+    detail:
+      "A design director and lead engineer combine forces to offer cinematic brand experiences with production-level execution.",
+    takeaway: "Small studio, senior-only talent, immediate impact.",
   },
   {
     year: "2024",
-    title: "Rapid Growth",
-    description:
-      "Expanded to 50+ clients across 15 countries, assembling multidisciplinary squads for every engagement.",
-    icon: FaUsers,
-    color: "from-cyber to-neon",
+    headline: "From boutique to embedded squads",
+    detail:
+      "Growth leaders, motion designers, and data strategists join. We start running multi-timezone engagements across Europe and MENA.",
+    takeaway: "One collective, five disciplines, zero hand-offs.",
   },
   {
     year: "2025",
-    title: "Global Impact",
-    description:
-      "Recognised as a creative digital studio delivering measurable outcomes for ambitious brands worldwide.",
-    icon: FaGlobe,
-    color: "from-neon to-accent",
+    headline: "Partnership network becomes our multiplier",
+    detail:
+      "Certified partner status with Shopify, Google, HubSpot, and Microsoft means faster approvals and exclusive product access.",
+    takeaway: "Clients skip vendor admin and unlock beta features first.",
   },
   {
     year: "Future",
-    title: "Next Chapter",
-    description:
-      "Continuing to push boundaries with emerging technology, immersive storytelling, and strategic growth.",
-    icon: FaTrophy,
-    color: "from-accent to-electric",
+    headline: "Immersive products & intelligent growth",
+    detail:
+      "We continue blending cinematic storytelling with AI-assisted design systems, delivering experiences that feel alive and measurable.",
+    takeaway: "Every release: scripted, orchestrated, optimised.",
   },
 ];
 
 export default function OurStory() {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-background to-background-secondary py-32" id="story">
-      <GradientOrb color="electric" size="lg" className="left-[-20%] top-[-10%]" />
-      <GradientOrb color="neon" size="md" className="right-[-15%] bottom-[10%]" />
+  const prefersReducedMotion = useReducedMotion();
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4">
-        <div className="text-center">
+  return (
+    <section className="relative overflow-hidden bg-background py-28 lg:py-32">
+      <GradientOrb color="electric" size="lg" className="left-[-20%] top-[-15%] opacity-80" />
+      <GradientOrb color="accent" size="md" className="right-[-18%] bottom-[-10%] opacity-60" />
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_65%)] opacity-70" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-5">
+        <div className="text-center text-white">
           <motion.h2
-            className="text-4xl font-heading font-bold text-foreground md:text-5xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            className="text-4xl font-heading font-bold md:text-5xl lg:text-[3rem]"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            Our <span className="text-gradient">Journey</span>
+            Our story is a continuous escalation
           </motion.h2>
           <div className="mt-6 flex justify-center">
             <DecorativeLine gradient="aurora" align="center" />
           </div>
           <motion.p
-            className="mx-auto mt-6 max-w-2xl text-lg text-foreground-secondary"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
           >
-            From a boutique collective in Brussels to a global creative studio partnering with teams across continents.
+            Every chapter sharpened our craft and expanded the impact we can deliver. We call it the Imaginta escalation curve—always
+            building, always amplifying.
           </motion.p>
         </div>
 
-        <div className="relative mt-20">
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-electric via-cyber to-neon md:left-1/2 md:-translate-x-1/2" />
+        <div className="mt-20 flex flex-col gap-12 lg:flex-row">
+          <div className="relative mx-auto hidden w-[2px] flex-none rounded-full bg-gradient-to-b from-orange-400 via-pink-500 to-cyan-400 lg:block" />
 
-          <div className="space-y-12 md:space-y-16">
-            {MILESTONES.map((milestone, index) => {
-              const Icon = milestone.icon;
-              const isLeft = index % 2 === 0;
-
-              return (
-                <motion.div
-                  key={milestone.year}
-                  className={cn(
-                    "relative md:flex md:items-center md:gap-12",
-                    isLeft ? "md:flex-row" : "md:flex-row-reverse",
-                  )}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.4 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+          <div className="flex-1 space-y-10">
+            {MILESTONES.map((milestone, index) => (
+              <WarmSpotlight key={milestone.year} className="h-full" intensity={0.7}>
+                <motion.article
+                  className="grid gap-6 rounded-[32px] border border-white/12 bg-white/[0.06] p-8 text-sm text-white/75 backdrop-blur-2xl md:grid-cols-[0.2fr_0.8fr]"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : index * 0.07, ease: "easeOut" }}
                 >
-                  <div className="w-full md:w-1/2">
-                    <motion.div
-                      className="glass-card relative overflow-hidden rounded-2xl p-8"
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ type: "spring", stiffness: 160, damping: 18 }}
-                    >
-                      <div className={cn("inline-flex rounded-2xl bg-gradient-to-br p-4 shadow-lg", milestone.color)}>
-                        <Icon className="h-7 w-7 text-white" />
-                      </div>
-                      <div className="mt-6 space-y-2">
-                        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground-muted">
-                          {milestone.year}
-                        </p>
-                        <h3 className="text-2xl font-heading font-semibold text-foreground">{milestone.title}</h3>
-                        <p className="text-sm leading-relaxed text-foreground-secondary">{milestone.description}</p>
-                      </div>
-                    </motion.div>
+                  <div className="flex items-start justify-between gap-4 md:flex-col md:text-left">
+                    <span className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{milestone.year}</span>
+                    <span className="hidden h-16 w-[2px] rounded-full bg-white/20 md:block" />
                   </div>
-
-                  <div className="hidden h-full md:block md:w-1/2" />
-
-                  <div
-                    className={cn(
-                      "absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border-4 border-background shadow-lg",
-                      `bg-gradient-to-br ${milestone.color}`,
-                      "left-4 md:left-1/2 md:-translate-x-1/2",
-                    )}
-                  />
-                </motion.div>
-              );
-            })}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-heading font-semibold text-white md:text-xl">{milestone.headline}</h3>
+                    <p className="text-white/65">{milestone.detail}</p>
+                    <p className="text-sm font-semibold text-orange-200/80">{milestone.takeaway}</p>
+                  </div>
+                </motion.article>
+              </WarmSpotlight>
+            ))}
           </div>
         </div>
       </div>

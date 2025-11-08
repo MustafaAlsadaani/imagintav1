@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Montserrat, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SkipToContent from "@/components/ui/SkipToContent";
 import GridOverlay from "@/components/ui/GridOverlay";
 import InteractiveGlow from "@/components/ui/InteractiveGlow";
 import AnalyticsProvider from "@/components/providers/AnalyticsProvider";
-import InitialLoadingOverlay from "@/components/providers/InitialLoadingOverlay";
+import LightingProvider from "@/components/providers/LightingProvider";
 import { GA_TRACKING_ID } from "@/lib/analytics";
 import "./globals.css";
 
@@ -16,6 +16,12 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-inter",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-montserrat",
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -108,7 +114,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${spaceGrotesk.variable} ${montserrat.variable} ${inter.variable} min-h-screen bg-background text-foreground antialiased`}
       >
         {GA_TRACKING_ID && GA_TRACKING_ID !== "GA-XXXXXX" && (
           <>
@@ -130,7 +136,12 @@ export default function RootLayout({
         )}
         <GridOverlay />
         <InteractiveGlow />
-        <InitialLoadingOverlay />
+        <LightingProvider />
+        <div className="ambient-glow" aria-hidden>
+          <span className="ambient-orb" style={{ top: "12%", left: "18%" }} />
+          <span className="ambient-orb ambient-orb--cyber" style={{ bottom: "14%", right: "10%" }} />
+          <span className="ambient-orb ambient-orb--neon" style={{ top: "48%", right: "22%" }} />
+        </div>
         <SkipToContent />
         <Navbar />
         <main id="main-content" className="pt-24 md:pt-28">

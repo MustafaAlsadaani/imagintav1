@@ -1,77 +1,115 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import GradientOrb from "@/components/ui/GradientOrb";
 import DecorativeLine from "@/components/ui/DecorativeLine";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
-const PRINCIPLES = [
+const CULTURE_QUOTE =
+  "We direct every engagement like a cinematic production—clear briefs, rehearsed hand-offs, and an encore of measurable growth.";
+
+const OPERATING_PRINCIPLES = [
   {
-    title: "Think Different",
-    description: "We challenge conventions and explore what’s possible beyond the brief.",
+    title: "Embedded squads",
+    description: "We join your ops in shared workspaces, matching rituals and tools to feel like part of the crew from day one.",
   },
   {
-    title: "Act Bold",
-    description: "Decisive action and rapid experimentation keep momentum high.",
+    title: "Creative rigor",
+    description: "Ideas only matter when they ship beautifully. We critique hard, polish harder, and document every choice.",
   },
   {
-    title: "Create Magic",
-    description: "Craft that sparks emotion is fuelled by empathy and precision.",
+    title: "Momentum monitors",
+    description: "Weekly pulses, monthly recaps, quarterly deep dives—each with plain-language dashboards and footage-worthy demos.",
+  },
+];
+
+const RITUALS = [
+  {
+    label: "Mondays",
+    detail: "Studio-wide cinematic review. We set tone, align narrative, adjust sprints, and escalate blockers instantly.",
   },
   {
-    title: "Deliver Excellence",
-    description: "We measure success by the durability and impact of what we ship.",
+    label: "Wednesdays",
+    detail: "Design, engineering, and growth labs. Fast critiques, prototype walkthroughs, and security sweeps.",
+  },
+  {
+    label: "Fridays",
+    detail: "Premiere demo. Stakeholders stream the latest build, receive recaps, and approve the next chapter.",
   },
 ];
 
 export default function OurCulture() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-background to-background-secondary py-32">
-      <GradientOrb color="neon" size="lg" className="left-[-15%] top-[15%]" />
-      <GradientOrb color="electric" size="md" className="right-[-12%] bottom-[10%]" />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#05030e,#0f172a)] py-28 lg:py-32">
+      <GradientOrb color="neon" size="lg" className="left-[-20%] top-[10%] opacity-65" />
+      <GradientOrb color="electric" size="md" className="right-[-16%] bottom-[12%] opacity-55" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="grid items-center gap-16 md:grid-cols-2">
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-electric">Our Culture</p>
-            <h2 className="text-4xl font-heading font-bold text-foreground md:text-5xl">
-              “We build digital experiences that feel inevitable — crafted with heart, delivered with rigour.”
-            </h2>
-            <p className="text-lg leading-relaxed text-foreground-secondary">
-              Collaboration isn’t a buzzword here; it’s our operating system. We embed with client teams, stay close to real problems, and design journeys that are as enjoyable as the outcomes are powerful.
-            </p>
-            <div className="flex justify-start">
-              <DecorativeLine align="left" />
-            </div>
-          </motion.div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_65%)]" />
 
-          <motion.div
-            className="space-y-4"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          >
-            {PRINCIPLES.map((principle, index) => (
-              <motion.div
-                key={principle.title}
-                className="glass-card rounded-2xl p-6"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 160, damping: 20, delay: index * 0.04 }}
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground-muted">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 text-xl font-heading font-semibold text-foreground">{principle.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">{principle.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+      <div className="relative z-10 mx-auto max-w-6xl px-5 text-white">
+        <motion.div
+          className="text-center"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h2 className="text-4xl font-heading font-bold md:text-5xl lg:text-[3rem]">Culture that keeps the studio sharp</h2>
+          <div className="mt-6 flex justify-center">
+            <DecorativeLine align="center" gradient="aurora" />
+          </div>
+          <p className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg">
+            Imaginta is intentionally senior, remote-native, and cinematic in delivery. Our culture is part precision, part play, and
+            entirely focused on client outcomes.
+          </p>
+        </motion.div>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[0.55fr_0.45fr]">
+          <WarmSpotlight intensity={0.7}>
+            <motion.div
+              className="space-y-8 rounded-[36px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-2xl"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+            >
+              <div className="space-y-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Studio mindset</p>
+                <p className="text-xl leading-relaxed text-white/80 md:text-2xl">{CULTURE_QUOTE}</p>
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {OPERATING_PRINCIPLES.map((principle) => (
+                  <div key={principle.title} className="rounded-3xl border border-white/10 bg-white/[0.05] p-5 text-sm text-white/70">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{principle.title}</p>
+                    <p className="mt-3">{principle.description}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </WarmSpotlight>
+
+          <WarmSpotlight intensity={0.65}>
+            <motion.div
+              className="space-y-5 rounded-[32px] border border-white/12 bg-white/[0.05] p-8 text-sm text-white/70 backdrop-blur-xl"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Weekly rhythm</p>
+              {RITUALS.map((ritual) => (
+                <div key={ritual.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/70">{ritual.label}</p>
+                  <p className="mt-2 text-white/65">{ritual.detail}</p>
+                </div>
+              ))}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 text-xs uppercase tracking-[0.35em] text-white/60">
+                Precision • Empathy • Curiosity • Accountability
+              </div>
+            </motion.div>
+          </WarmSpotlight>
         </div>
       </div>
     </section>

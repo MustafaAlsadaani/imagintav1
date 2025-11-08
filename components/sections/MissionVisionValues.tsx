@@ -1,181 +1,144 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FaEye, FaHeart, FaLightbulb, FaShieldAlt, FaBullseye, FaUsers } from "react-icons/fa";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import GradientOrb from "@/components/ui/GradientOrb";
 import DecorativeLine from "@/components/ui/DecorativeLine";
-import { fadeInUp } from "@/lib/animations";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
-const values = [
+const CORE_STATEMENTS = [
   {
-    title: "Innovation",
-    description: "We experiment boldly and turn nascent ideas into reality.",
-    icon: FaLightbulb,
+    key: "mission",
+    title: "Mission",
+    blurb: "Make digital transformation feel cinematic, fast, and dependable for teams who refuse to slow down.",
+    bullets: [
+      "Every engagement shipped in plain language",
+      "Senior talent embedded, no hand-offs",
+      "Creativity and performance measured together",
+    ],
   },
   {
-    title: "Integrity",
-    description: "Transparency, trust, and accountability drive every decision.",
-    icon: FaShieldAlt,
+    key: "vision",
+    title: "Vision",
+    blurb: "Imaginta is the embedded studio brands call when they need direction, production, and growth in a single heartbeat.",
+    bullets: [
+      "Bridge storytelling, product, and growth",
+      "Lead partnerships so clients skip vendor friction",
+      "Deliver experiences that feel alive and measurable",
+    ],
   },
   {
-    title: "Excellence",
-    description: "Craftsmanship and polish are non-negotiable across every touchpoint.",
-    icon: FaBullseye,
-  },
-  {
-    title: "Collaboration",
-    description: "We co-create with clients and empower their teams for long-term success.",
-    icon: FaUsers,
-  },
-  {
-    title: "Empathy",
-    description: "Understanding people fuels design that resonates and performs.",
-    icon: FaHeart,
-  },
-  {
-    title: "Security",
-    description: "We bake in resilience and compliance from day zero.",
-    icon: FaShieldAlt,
+    key: "values",
+    title: "Values",
+    blurb: "The rituals and mindsets that keep our squad precise, curious, and human-first.",
+    bullets: [
+      "Innovation: experiment boldly, ship responsibly",
+      "Integrity: transparency over theatre",
+      "Excellence: polish the craft, sweat the details",
+      "Collaboration: co-create, never silo",
+      "Empathy: design with care for teams and audiences",
+      "Security: resilience baked into every decision",
+    ],
   },
 ];
 
 export default function MissionVisionValues() {
-  return (
-    <section className="relative overflow-hidden bg-background py-32">
-      <GradientOrb color="cyber" size="lg" className="left-[-15%] top-[-20%]" />
-      <GradientOrb color="electric" size="md" className="right-[-10%] bottom-[-15%]" />
+  const prefersReducedMotion = useReducedMotion();
+  const [activeKey, setActiveKey] = useState<string>(CORE_STATEMENTS[0].key);
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4">
-        <div className="text-center">
+  const activeStatement = CORE_STATEMENTS.find((item) => item.key === activeKey) ?? CORE_STATEMENTS[0];
+
+  return (
+    <section className="relative overflow-hidden bg-[linear-gradient(160deg,rgba(20,11,35,0.9),rgba(5,3,14,0.95))] py-28 lg:py-32">
+      <GradientOrb color="cyber" size="lg" className="left-[-18%] top-[-22%] opacity-70" />
+      <GradientOrb color="electric" size="md" className="right-[-15%] bottom-[-15%] opacity-60" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-5">
+        <div className="text-center text-white">
           <motion.h2
-            className="text-4xl font-heading font-bold text-foreground md:text-5xl"
-            variants={fadeInUp}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            className="text-4xl font-heading font-bold md:text-5xl lg:text-[3rem]"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            What <span className="text-gradient">Drives</span> Us
+            What guides Imaginta every day
           </motion.h2>
           <div className="mt-6 flex justify-center">
             <DecorativeLine gradient="aurora" align="center" />
           </div>
           <motion.p
-            className="mx-auto mt-6 max-w-2xl text-lg text-foreground-secondary"
-            variants={fadeInUp}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            viewport={{ once: true, amount: 0.3 }}
+            className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
           >
-            Our culture fuses bold creativity, rigorous strategy, and security-first execution to deliver lasting results.
+            We keep a tight feedback loop between vision and execution. Every decision ladders up to why Imaginta exists, where we are
+            going, and the rituals that keep us sharp.
           </motion.p>
         </div>
 
-        <Tabs defaultValue="mission" className="mt-16">
-          <TabsList className="glass-creative mx-auto flex w-full max-w-xl justify-center gap-2 rounded-2xl p-2">
-            <TabsTrigger
-              value="mission"
-              className="rounded-xl px-4 py-2 text-sm font-semibold transition data-[state=active]:bg-gradient-aurora data-[state=active]:text-white"
-            >
-              Mission
-            </TabsTrigger>
-            <TabsTrigger
-              value="vision"
-              className="rounded-xl px-4 py-2 text-sm font-semibold transition data-[state=active]:bg-gradient-aurora data-[state=active]:text-white"
-            >
-              Vision
-            </TabsTrigger>
-            <TabsTrigger
-              value="values"
-              className="rounded-xl px-4 py-2 text-sm font-semibold transition data-[state=active]:bg-gradient-aurora data-[state=active]:text-white"
-            >
-              Values
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="mission" className="mt-10">
-            <motion.div
-              className="glass-card grid gap-10 rounded-3xl p-10 md:grid-cols-[1.2fr_1fr]"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-electric/30 bg-electric/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-electric">
-                  Mission
-                </div>
-                <p className="text-3xl font-heading font-semibold leading-relaxed text-foreground">
-                  Empower visionary leaders with cohesive digital ecosystems that elevate brands and accelerate measurable growth.
-                </p>
-              </div>
-              <div className="space-y-4 text-sm leading-relaxed text-foreground-secondary">
-                <p>
-                  We integrate strategy, design, engineering, and growth under one studio so teams can focus on momentum—not vendor management.
-                </p>
-                <p>
-                  Every engagement is led by senior talent, anchored in data, and designed to scale securely.
-                </p>
-              </div>
-            </motion.div>
-          </TabsContent>
-
-          <TabsContent value="vision" className="mt-10">
-            <motion.div
-              className="glass-card grid gap-10 rounded-3xl p-10 md:grid-cols-[1.1fr_1fr]"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-cyber/30 bg-cyber/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyber">
-                  Vision
-                </div>
-                <p className="text-3xl font-heading font-semibold leading-relaxed text-foreground">
-                  Imaginta is the creative digital studio of choice for brands ready to spark revolutions in their industries.
-                </p>
-              </div>
-              <div className="space-y-4 text-sm leading-relaxed text-foreground-secondary">
-                <p>
-                  We see a world where brand storytelling, digital products, and growth strategy are crafted together for maximum impact.
-                </p>
-                <p>
-                  Our aim is to become the partner teams call when they need ideas and execution in perfect harmony.
-                </p>
-              </div>
-            </motion.div>
-          </TabsContent>
-
-          <TabsContent value="values" className="mt-10">
-            <motion.div
-              className="grid gap-6 md:grid-cols-2"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              {values.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <motion.div
-                    key={value.title}
-                    className="glass-card rounded-2xl p-6"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 180, damping: 18, delay: index * 0.04 }}
+        <div className="mt-16 grid gap-10 lg:grid-cols-[0.45fr_0.55fr]">
+          <div className="space-y-4">
+            {CORE_STATEMENTS.map((statement) => {
+              const isActive = statement.key === activeKey;
+              return (
+                <WarmSpotlight key={statement.key} intensity={0.65}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveKey(statement.key)}
+                    className={`group flex w-full items-center justify-between rounded-[26px] border px-6 py-4 text-left transition-colors duration-300 ${
+                      isActive
+                        ? "border-orange-300/50 bg-white/[0.12] text-white"
+                        : "border-white/10 bg-white/[0.05] text-white/65 hover:border-white/20 hover:text-white"
+                    }`}
                   >
-                    <div className="inline-flex rounded-xl bg-white/10 p-3 text-electric">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h4 className="mt-4 text-lg font-semibold text-foreground">{value.title}</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">{value.description}</p>
-                  </motion.div>
-                );
-              })}
+                    <span className="text-sm font-semibold uppercase tracking-[0.32em]">{statement.title}</span>
+                    <motion.span
+                      className="text-xs uppercase tracking-[0.4em] text-orange-200/80"
+                      animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -6 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      View
+                    </motion.span>
+                  </button>
+                </WarmSpotlight>
+              );
+            })}
+          </div>
+
+          <WarmSpotlight intensity={0.7}>
+            <motion.div
+              key={activeStatement.key}
+              className="surface-card relative overflow-hidden rounded-[32px] border border-white/15 p-10 text-sm text-white/75"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(236,72,153,0.18),transparent_60%)]" />
+              <div className="relative z-10 space-y-6">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.35em] text-orange-200/80">{activeStatement.title}</span>
+                  <h3 className="mt-3 text-2xl font-heading font-semibold text-white md:text-3xl">{activeStatement.blurb}</h3>
+                </div>
+
+                <ul className="grid gap-3 text-sm text-white/65 sm:grid-cols-2">
+                  {activeStatement.bullets.map((bullet) => (
+                    <li key={bullet} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 text-sm text-white/60">
+                  “Our team translates bold vision into accountable delivery. Strategy writers, motion designers, engineers, and growth
+                  analysts move in lockstep. Clients never wonder what comes next.”
+                </div>
+              </div>
             </motion.div>
-          </TabsContent>
-        </Tabs>
+          </WarmSpotlight>
+        </div>
       </div>
     </section>
   );

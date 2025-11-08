@@ -2,39 +2,25 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import {
-  FiArrowRight,
-  FiUsers,
-  FiTrendingUp,
-  FiShield,
-  FiLifeBuoy,
-  FiTarget,
-  FiCheckCircle,
-} from "react-icons/fi";
+import { FiArrowRight, FiCheckCircle, FiLifeBuoy, FiShield, FiUsers } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
-const benefits = [
+const goals = [
   {
-    title: "One partner for every discipline",
-    description: "Strategy, design, engineering, marketing, and security specialists at your disposal without building an in-house team.",
-    icon: FiUsers,
+    number: "1",
+    title: "Help you get online quickly.",
+    detail: "Launch or refresh your website fast so customers can find you day and night.",
   },
   {
-    title: "Roadmaps tied to business goals",
-    description: "We translate your revenue targets and customer needs into a phased action plan with measurable checkpoints.",
-    icon: FiTarget,
+    number: "2",
+    title: "Protect your business from threats.",
+    detail: "Security and privacy tools keep your data safe and give customers confidence.",
   },
   {
-    title: "Momentum you can maintain",
-    description: "From launch to growth campaigns and platform upkeep, we keep shipping so your team can focus on operations.",
-    icon: FiTrendingUp,
+    number: "3",
+    title: "Grow your sales with smart strategies.",
+    detail: "Marketing plans show you where new leads come from and how to nurture them.",
   },
-];
-
-const partnershipSteps = [
-  "We audit where you are today and co-create a simple success plan.",
-  "Dedicated Imaginta squad executes while you approve and prioritise.",
-  "Monthly reviews keep budgets, performance, and next moves transparent.",
 ];
 
 export default function HomeMissionVision() {
@@ -42,7 +28,7 @@ export default function HomeMissionVision() {
 
   return (
     <section className="relative overflow-hidden bg-background py-24 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-custom">
         <motion.div
           initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -53,13 +39,12 @@ export default function HomeMissionVision() {
           <span className="caps-label-wide inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-primary">
             Imaginta for business owners
           </span>
-          <h2 className="mt-6 text-3xl font-heading font-bold text-foreground sm:text-4xl lg:text-5xl">
-            A success partner focused on clear outcomes, not agency jargon.
+          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl">
+            Our mission is to give you tools that make business growth simple.
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Most leaders donâ€™t need more vendorsâ€”they need a cross-functional team that understands the pressures of running a
-            growing business. Imaginta embeds alongside you to modernise your digital presence, attract customers, and keep
-            everything running securely without creating another full-time hire to manage.
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            We explain every step in plain language so you always know how a website, marketing plan, or security upgrade will help.
+            Benefit: save time and money while seeing real results, like 30% more leads.
           </p>
         </motion.div>
 
@@ -71,47 +56,51 @@ export default function HomeMissionVision() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-8"
           >
-            <div className="space-y-4 text-muted-foreground">
-              {benefits.map(({ title, description, icon: Icon }) => (
-                <div key={title} className="flex gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                  <span className="mt-1 flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed">{description}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+              <h3 className="text-xl font-semibold">Mission statement</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Our goal is to give you the tools to build a lasting business foundation. We keep meetings friendly, use simple
+                explainers, and show exactly how each service supports your bottom line.
+              </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-              <h3 className="text-lg font-heading font-semibold text-foreground">How partnering with us works</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                We keep the process transparent so you always know whatâ€™s happening next.
-              </p>
-              <ul className="mt-4 space-y-3 text-sm text-foreground/80">
-                {partnershipSteps.map((step) => (
-                  <li key={step} className="flex items-start gap-3">
-                    <span className="mt-0.5 text-primary">
-                      <FiCheckCircle className="h-4 w-4" />
+              <h3 className="text-xl font-semibold">Our simple goals for your business</h3>
+              <div className="mt-4 space-y-4">
+                {goals.map((goal) => (
+                  <div key={goal.number} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <span className="flex items-center gap-3 text-sm font-semibold text-primary">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
+                        {goal.number}
+                      </span>
+                      {goal.title}
                     </span>
-                    <span>{step}</span>
-                  </li>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{goal.detail}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <motion.div
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex flex-wrap gap-4 text-sm text-muted-foreground"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
+                <FiUsers className="h-4 w-4 text-primary" />
+                Friendly, plain-language calls
+              </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
                 <FiShield className="h-4 w-4 text-primary" />
-                Security-first builds
+                Security-first tech choices
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
                 <FiLifeBuoy className="h-4 w-4 text-accent" />
-                Ongoing optimisation support
+                Support ready when you need it
               </span>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -122,18 +111,18 @@ export default function HomeMissionVision() {
             className="space-y-6 rounded-3xl border border-white/10 bg-white/[0.05] p-6"
           >
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <h3 className="text-lg font-heading font-semibold text-foreground">Why owners choose Imaginta</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                We bring leadership-level guidance without the enterprise overhead, helping you focus on running the business while we
-                deliver the digital foundations that keep it growing.
+              <h3 className="text-lg font-semibold">Why owners choose Imaginta</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Struggling to attract customers or keep up with tech changes? We stand beside you, teach what works, and deliver the
+                tools to keep results climbing.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                { label: "Web + product", detail: "High-performing sites, platforms, and customer journeys." },
-                { label: "Growth engine", detail: "Campaigns, funnels, and marketing ops that scale with demand." },
-                { label: "Secure operations", detail: "Compliance, monitoring, and incident response on standby." },
-                { label: "Embedded squad", detail: "Weekly touchpoints, clear reporting, and shared ownership." },
+                { label: "Web made easy", detail: "Simple sites and stores your team can update in minutes." },
+                { label: "Marketing clarity", detail: "Know which channels bring the best leads and why." },
+                { label: "Secure systems", detail: "Compliance, monitoring, and quick support if issues pop up." },
+                { label: "Embedded squad", detail: "Weekly check-ins, clear dashboards, and a partner who teaches." },
               ].map((item) => (
                 <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
                   <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">{item.label}</p>
@@ -148,7 +137,7 @@ export default function HomeMissionVision() {
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/25 hover:-translate-y-[1px] hover:shadow-xl"
             >
               <Link href="/contact">
-                Book a strategy call
+                Talk through your goals with us
                 <FiArrowRight className="h-5 w-5" />
               </Link>
             </Button>

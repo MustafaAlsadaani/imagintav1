@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(npm run dev:*)",
-      "Bash(timeout 5 bash:*)"
+      "Bash(timeout 5 bash:*)",
+      "Bash(git push:*)",
+      "Bash(git remote:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(node -e:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

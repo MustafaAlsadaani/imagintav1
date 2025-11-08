@@ -1,57 +1,77 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaCalendarAlt, FaDownload } from "react-icons/fa";
-import AnimatedMesh from "@/components/ui/AnimatedMesh";
-import GradientOrb from "@/components/ui/GradientOrb";
-import ServiceInquiryForm from "@/components/ui/ServiceInquiryForm";
-import { Button } from "@/components/ui/button";
-import { fadeInUp } from "@/lib/animations";
+import { motion, useReducedMotion } from "framer-motion";
+import WarmSpotlight from "@/components/ui/WarmSpotlight";
+
+const CONTACT_POINTS = [
+  {
+    title: "Ready to move?",
+    description: "Book a 30-minute session so we can map priorities, budget guardrails, and first month wins.",
+    action: {
+      label: "Schedule a strategy call",
+      href: "/contact",
+    },
+  },
+  {
+    title: "Need the details?",
+    description: "Download the one-page plan to review with your team—pricing, process, and deliverables included.",
+    action: {
+      label: "Get the plan PDF",
+      href: "/downloads/imaginta-plan.pdf",
+    },
+  },
+];
 
 export default function ServicesCTA() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-electric/10 via-cyber/10 to-neon/10 py-32">
-      <AnimatedMesh />
-      <GradientOrb color="electric" size="lg" className="left-[-20%] top-[-10%]" />
-      <GradientOrb color="accent" size="md" className="right-[-10%] bottom-[10%]" />
+    <section
+      className="relative overflow-hidden bg-gradient-to-br from-orange-500/25 via-pink-500/20 to-cyan-400/20 py-24"
+      data-stickman-section="contact"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(17,24,39,0.65),_transparent_70%)]" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
+      <div className="container-custom relative z-10">
         <motion.div
-          variants={fadeInUp}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="glass-card rounded-3xl p-10 sm:p-16"
+          className="mx-auto max-w-3xl text-center text-white"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-heading font-bold text-foreground md:text-5xl">
-            Ready to <span className="text-gradient">Transform</span> Your Digital Presence?
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground-secondary">
-            Let’s align on goals, scope, and momentum. Book a consultation or download our services guide to explore what’s possible.
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">Next step</p>
+          <h2 className="mt-4 text-3xl font-heading font-bold sm:text-4xl">Let’s map your first 90 days.</h2>
+          <p className="mt-4 text-base text-white/80 sm:text-lg">
+            Whether you want a consultative walkthrough or just the numbers, we make the next move simple.
           </p>
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <ServiceInquiryForm
-              trigger={
-                <Button variant="gradient" size="lg" className="gap-2 px-8 py-6 text-base">
-                  <FaCalendarAlt className="h-5 w-5" /> Schedule Free Consultation
-                </Button>
-              }
-            />
-            <Button asChild variant="glass" size="lg" className="gap-2 px-8 py-6 text-base">
-              <Link href="/services/guide.pdf">
-                <FaDownload className="h-5 w-5" /> Download Services Guide
-              </Link>
-            </Button>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-foreground-muted">
-            <span>No commitment consultation</span>
-            <span>Strategic insights in 24 hours</span>
-            <span>Trusted by 50+ brands</span>
-          </div>
         </motion.div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {CONTACT_POINTS.map((point, index) => (
+            <WarmSpotlight key={point.title} className="h-full" intensity={0.7}>
+              <motion.div
+                className="flex h-full flex-col justify-between rounded-3xl border border-white/20 bg-white/10 p-6 text-left text-sm text-white/80 backdrop-blur-2xl"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
+              >
+                <div>
+                  <h3 className="text-xl font-heading font-semibold text-white">{point.title}</h3>
+                  <p className="mt-3 text-white/70">{point.description}</p>
+                </div>
+                <Link
+                  href={point.action.href}
+                  className="mt-5 inline-flex items-center gap-2 self-start rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-white hover:bg-white/10"
+                >
+                  {point.action.label}
+                </Link>
+              </motion.div>
+            </WarmSpotlight>
+          ))}
+        </div>
       </div>
     </section>
   );

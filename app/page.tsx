@@ -37,14 +37,12 @@ export default function Home() {
     <PageTransition>
       <main className="flex flex-col bg-background">
         <Hero />
-        <div className="space-y-32">
-          <TrustIndicators />
-          <ServicesOverview />
-          <HomeMissionVision />
-          <CollaborationPartners />
-          <Testimonials />
-          <WinningRace />
-        </div>
+        <TrustIndicators />
+        <ServicesOverview />
+        <HomeMissionVision />
+        <CollaborationPartners />
+        <Testimonials />
+        <WinningRace />
       </main>
     </PageTransition>
   );
