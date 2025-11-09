@@ -3,11 +3,11 @@ import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const labelVariants = cva("text-sm font-semibold text-foreground", {
+const labelVariants = cva("text-sm font-semibold text-cyber-text", {
   variants: {
     variant: {
       default: "",
-      muted: "text-muted-foreground",
+      muted: "text-cyber-text-secondary",
     },
   },
   defaultVariants: {

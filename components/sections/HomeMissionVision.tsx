@@ -44,7 +44,7 @@ export default function HomeMissionVision() {
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
             We explain every step in plain language so you always know how a website, marketing plan, or security upgrade will help.
-            Benefit: save time and money while seeing real results, like 30% more leads.
+            Our vision is to be the trusted digital partner for small and medium businesses across Belgium and beyond.
           </p>
         </motion.div>
 
@@ -137,7 +137,7 @@ export default function HomeMissionVision() {
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/25 hover:-translate-y-[1px] hover:shadow-xl"
             >
               <Link href="/contact">
-                Talk through your goals with us
+                Contact us to start transforming
                 <FiArrowRight className="h-5 w-5" />
               </Link>
             </Button>

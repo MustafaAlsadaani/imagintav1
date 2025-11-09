@@ -69,19 +69,19 @@ export default function WhyWorkWithUs() {
         </motion.div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <WarmSpotlight intensity={0.7}>
+          <WarmSpotlight>
             <motion.div
-              className="grid gap-6 rounded-[36px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-2xl sm:grid-cols-2"
+              className="grid gap-6 rounded-[36px] border border-cyber-neutral/35 bg-cyber-bg/82 p-10 text-sm text-cyber-text sm:grid-cols-2"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.45 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
             >
               {IMPACT_STATS.map((stat) => (
-                <div key={stat.label} className="rounded-3xl border border-white/12 bg-white/10 p-6 text-left text-sm text-white/75">
-                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">{stat.label}</p>
+                <div key={stat.label} className="rounded-3xl border border-cyber-neutral/30 bg-cyber-bg/76 p-6 text-left text-sm text-cyber-text">
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">{stat.label}</p>
                   <p className="mt-3 text-3xl font-heading font-semibold text-white">{stat.value}</p>
-                  <p className="mt-3 text-white/65">{stat.caption}</p>
+                  <p className="mt-3 text-cyber-text-secondary">{stat.caption}</p>
                 </div>
               ))}
             </motion.div>
@@ -89,26 +89,26 @@ export default function WhyWorkWithUs() {
 
           <div className="space-y-6">
             {PROOF_POINTS.map((point, index) => (
-              <WarmSpotlight key={point.headline} intensity={0.65}>
+              <WarmSpotlight key={point.headline}>
                 <motion.article
-                  className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-left text-sm text-white/75 backdrop-blur-xl"
+                  className="rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/78 p-6 text-left text-sm text-cyber-text"
                   initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.45 }}
                   transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
                 >
-                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.35em] text-cyber-text-secondary">
                     <span>{point.headline}</span>
-                    <span className="text-orange-200/80">{point.metric}</span>
+                    <span className="text-cyber-primary">{point.metric}</span>
                   </div>
-                  <p className="mt-3 text-white/65">{point.blurb}</p>
+                  <p className="mt-3 text-cyber-text-secondary">{point.blurb}</p>
                 </motion.article>
               </WarmSpotlight>
             ))}
 
-            <WarmSpotlight intensity={0.6}>
+            <WarmSpotlight>
               <motion.div
-                className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-sm text-white/70 backdrop-blur-xl"
+                className="rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/78 p-6 text-sm text-cyber-text"
                 initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.45 }}
@@ -116,7 +116,7 @@ export default function WhyWorkWithUs() {
               >
                 “Imaginta combines the sensitivity of a branding agency with the precision of a product team. They pull partners into the
                 conversation, instrument every touchpoint, and keep momentum strong after launch.”
-                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">Chief Marketing Officer · Retail Group</p>
+                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyber-text-secondary/80">Chief Marketing Officer · Retail Group</p>
               </motion.div>
             </WarmSpotlight>
           </div>

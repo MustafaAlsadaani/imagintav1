@@ -4,6 +4,7 @@ import ContactForm from "@/components/sections/ContactForm";
 import ContactHighlights from "@/components/sections/ContactHighlights";
 import ContactMap from "@/components/sections/ContactMap";
 import CTASection from "@/components/sections/CTASection";
+import ContactInfo from "@/components/sections/ContactInfo";
 
 export const metadata = {
   title: "Contact Us | Get Your Free Consultation | Imaginta",
@@ -20,6 +21,7 @@ export default function ContactPage() {
       <div className="flex flex-col bg-background">
         <ContactHero />
         <ContactForm />
+        <ContactInfo />
         <ContactHighlights />
         <ContactMap />
         <CTASection />

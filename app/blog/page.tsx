@@ -1,20 +1,25 @@
 import PageTransition from "@/components/layout/PageTransition";
-import BlogIntro from "@/components/sections/BlogIntro";
-import BlogFeed from "@/components/sections/BlogFeed";
+import BlogHero from "@/components/blog/BlogHero";
+import BlogStream from "@/components/blog/BlogStream";
+import BlogCTA from "@/components/blog/BlogCTA";
 
 export const metadata = {
-  title: "Imaginta Feed | Social-style Insights",
+  title: "Imaginta Signals — Cyber-Night Insights & Playbooks",
   description:
-    "Scroll the Imaginta feed for daily drops from Mustafa, Sero, and Falcon—web, design, marketing, and business growth tips delivered in a premium dark experience.",
+    "Dive into Imaginta’s neon signal stream: strategy, design, engineering, and growth telemetry crafted to keep your team racing ahead.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogPage() {
   return (
     <PageTransition>
-      <div className="flex flex-col bg-background text-foreground">
-        <BlogIntro />
-        <BlogFeed />
-      </div>
+      <main className="flex flex-col bg-cyber-bg text-cyber-text">
+        <BlogHero />
+        <BlogStream />
+        <BlogCTA />
+      </main>
     </PageTransition>
   );
 }

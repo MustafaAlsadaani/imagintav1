@@ -55,7 +55,7 @@ export default function OurApproach() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(160deg,#060312,#0b1220)] py-28 lg:py-32">
+    <section className="relative overflow-hidden section-surface-soft py-28 lg:py-32">
       <GradientOrb color="cyber" size="lg" className="left-[-18%] bottom-[12%] opacity-70" />
       <GradientOrb color="electric" size="md" className="right-[-16%] top-[14%] opacity-60" />
 
@@ -82,25 +82,25 @@ export default function OurApproach() {
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[0.65fr_0.35fr]">
-          <WarmSpotlight intensity={0.7}>
+          <WarmSpotlight>
             <motion.ol
-              className="space-y-8 rounded-[36px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-2xl"
+              className="space-y-8 rounded-[36px] border border-cyber-neutral/35 bg-cyber-bg/82 p-10 text-sm text-cyber-text"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.45 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {JOURNEY.map((stage, index) => (
-                <li key={stage.stage} className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                <li key={stage.stage} className="grid gap-4 rounded-3xl border border-cyber-neutral/30 bg-cyber-bg/78 p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-cyber-text-secondary">
                     <span>{String(index + 1).padStart(2, "0")}</span>
                     <span>{stage.stage}</span>
                   </div>
                   <h3 className="text-xl font-heading font-semibold text-white md:text-2xl">{stage.headline}</h3>
-                  <p className="text-sm text-white/70">{stage.description}</p>
-                  <div className="grid gap-2 text-xs uppercase tracking-[0.32em] text-white/55 sm:grid-cols-3">
+                  <p className="text-sm text-cyber-text-secondary">{stage.description}</p>
+                  <div className="grid gap-2 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary sm:grid-cols-3">
                     {stage.deliverables.map((deliverable) => (
-                      <span key={deliverable} className="rounded-2xl border border-white/12 bg-white/[0.04] px-3 py-2 text-[11px]">
+                      <span key={deliverable} className="rounded-2xl border border-cyber-neutral/28 bg-cyber-bg/74 px-3 py-2 text-[11px]">
                         {deliverable}
                       </span>
                     ))}
@@ -112,23 +112,23 @@ export default function OurApproach() {
 
           <div className="space-y-6">
             {SUPPORT.map((item, index) => (
-              <WarmSpotlight key={item.label} intensity={0.65}>
+              <WarmSpotlight key={item.label}>
                 <motion.div
-                  className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-sm text-white/75 backdrop-blur-xl"
+                  className="rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/78 p-6 text-sm text-cyber-text"
                   initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.45 }}
                   transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{item.label}</p>
-                  <p className="mt-3 text-white/65">{item.detail}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">{item.label}</p>
+                  <p className="mt-3 text-cyber-text-secondary">{item.detail}</p>
                 </motion.div>
               </WarmSpotlight>
             ))}
 
-            <WarmSpotlight intensity={0.62}>
+            <WarmSpotlight>
               <motion.div
-                className="rounded-[28px] border border-white/12 bg-white/[0.05] p-6 text-sm text-white/70 backdrop-blur-xl"
+                className="rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/78 p-6 text-sm text-cyber-text"
                 initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.45 }}
@@ -136,7 +136,7 @@ export default function OurApproach() {
               >
                 “Our approach feels like a film production schedule—each act builds on the previous, every stakeholder sees the plan, and
                 the launch lands with precision.”
-                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">Head of Brand · Fintech</p>
+                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyber-text-secondary/80">Head of Brand · Fintech</p>
               </motion.div>
             </WarmSpotlight>
           </div>

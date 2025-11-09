@@ -112,9 +112,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark premium-dark" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${montserrat.variable} ${inter.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${spaceGrotesk.variable} ${montserrat.variable} ${inter.variable} premium-dark min-h-screen bg-background text-foreground antialiased`}
       >
         {GA_TRACKING_ID && GA_TRACKING_ID !== "GA-XXXXXX" && (
           <>

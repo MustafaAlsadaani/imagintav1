@@ -50,9 +50,9 @@ export default function ServicesCTA() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {CONTACT_POINTS.map((point, index) => (
-            <WarmSpotlight key={point.title} className="h-full" intensity={0.7}>
+            <WarmSpotlight key={point.title} className="h-full">
               <motion.div
-                className="flex h-full flex-col justify-between rounded-3xl border border-white/20 bg-white/10 p-6 text-left text-sm text-white/80 backdrop-blur-2xl"
+                className="flex h-full flex-col justify-between rounded-3xl border border-cyber-neutral/35 bg-cyber-bg/80 p-6 text-left text-sm text-cyber-text"
                 initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
@@ -60,11 +60,11 @@ export default function ServicesCTA() {
               >
                 <div>
                   <h3 className="text-xl font-heading font-semibold text-white">{point.title}</h3>
-                  <p className="mt-3 text-white/70">{point.description}</p>
+                  <p className="mt-3 text-cyber-text-secondary">{point.description}</p>
                 </div>
                 <Link
                   href={point.action.href}
-                  className="mt-5 inline-flex items-center gap-2 self-start rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-white hover:bg-white/10"
+                  className="mt-5 inline-flex items-center gap-2 self-start rounded-full border border-cyber-neutral/30 px-5 py-3 text-sm font-semibold text-cyber-text transition-colors duration-300 hover:border-cyber-primary/40 hover:text-white"
                 >
                   {point.action.label}
                 </Link>

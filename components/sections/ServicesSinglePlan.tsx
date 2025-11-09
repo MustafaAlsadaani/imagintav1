@@ -2,9 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
+import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
 const SNAPSHOT = [
   { label: "Timeline", value: "12 months" },
@@ -16,9 +15,9 @@ const INCLUDED = [
   {
     title: "Strategy & Direction",
     items: [
-      "Quarterly roadmap + KPI targets",
-      "Leadership advisory and budget reviews",
-      "Experiment tracking and reporting",
+      "Quarterly roadmap & KPI targets",
+      "Leadership advisory + budget reviews",
+      "Experiment tracking & reporting",
     ],
   },
   {
@@ -26,15 +25,15 @@ const INCLUDED = [
     items: [
       "Brand systems, UI kits, and motion",
       "UX flows, prototypes, and testing",
-      "Marketing sites and campaign assets",
+      "Marketing sites and launch assets",
     ],
   },
   {
     title: "Engineering & Growth",
     items: [
-      "Next.js builds, integrations, and QA",
-      "SEO, paid, lifecycle, and analytics",
-      "Security, monitoring, and enablement",
+      "Next.js builds, integrations, QA",
+      "SEO, paid, lifecycle, analytics",
+      "Security, monitoring, enablement",
     ],
   },
 ];
@@ -42,7 +41,7 @@ const INCLUDED = [
 const GUARANTEES = [
   {
     heading: "One shared backlog",
-    detail: "Every request lives in one transparent board with status, owner, and due date.",
+    detail: "Every request lives in one transparent board with owner, status, and due date.",
   },
   {
     heading: "Monthly launch rhythm",
@@ -58,120 +57,102 @@ export default function ServicesSinglePlan() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="plan" className="relative overflow-hidden bg-gradient-to-b from-background-secondary to-background py-28">
-      <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_top,_rgba(236,72,153,0.18),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.18),_transparent_60%)]" />
+    <section id="plan" className="relative overflow-hidden section-surface py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.18] [background-image:radial-gradient(circle_at_16%_18%,rgba(245,168,107,0.35),transparent_58%),radial-gradient(circle_at_82%_12%,rgba(125,211,252,0.24),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 blur-[200px] opacity-60 [background-image:radial-gradient(circle_at_0%_0%,rgba(245,168,107,0.22),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(125,211,252,0.18),transparent_60%)]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 lg:px-10">
         <motion.div
           className="text-center"
-          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.38em] text-white/60">Imaginta One Plan</span>
-          <h2 className="mt-4 text-balance text-4xl font-heading font-bold text-white md:text-5xl">
-            One yearly partnership, zero guesswork
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/60">
+            Imaginta one plan
+          </span>
+          <h2 className="mt-6 text-balance text-3xl font-heading font-semibold text-white sm:text-4xl lg:text-[3rem]">
+            One annual partnership that feels like an in-house launch room.
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base text-white/70 sm:text-lg">
-            Your plan covers everything: strategy, brand, product, engineering, growth, and care. We become your embedded digital
-            team—delivering warm collaboration and accountable outcomes all year long.
+            Strategy, brand, product, engineering, and growth move as one embedded crew. The plan stays warm, predictable, and accountable—no vendor juggling required.
           </p>
         </motion.div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-          <WarmSpotlight className="h-full" intensity={0.7}>
-            <motion.div
-              className="flex h-full flex-col gap-8 rounded-[36px] border border-white/12 bg-white/[0.05] p-10 text-sm text-white/75 backdrop-blur-2xl"
-              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
-              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.55, ease: "easeOut" }}
-            >
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Yearly investment</p>
-                  <p className="text-4xl font-heading font-semibold text-white">€1,999</p>
+          <motion.div
+            className="surface-panel--lifted flex h-full flex-col gap-8 rounded-[36px] p-8 text-sm text-white/75"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.32em] text-white/55">Yearly investment</p>
+                <p className="text-4xl font-heading font-semibold text-white">€1,999</p>
+              </div>
+              <Button asChild variant="gradient" size="lg" className="rounded-full px-7 py-4 text-base">
+                <Link href="/contact" className="flex items-center gap-2">
+                  Reserve a start date
+                  <FiArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {SNAPSHOT.map((item) => (
+                <div key={item.label} className="surface-panel rounded-3xl px-4 py-4 text-center text-xs uppercase tracking-[0.32em] text-white/60">
+                  <span className="block text-lg font-heading font-semibold text-white">{item.value}</span>
+                  {item.label}
                 </div>
-                <Button asChild variant="gradient" size="lg" className="rounded-full px-8 py-4 text-base">
-                  <Link href="/contact" className="flex items-center gap-2">
-                    Reserve a start date
-                    <FaArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
+              ))}
+            </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
-                {SNAPSHOT.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center text-xs uppercase tracking-[0.32em] text-white/60">
-                    <span className="block text-lg font-heading font-semibold text-white/90">{item.value}</span>
-                    {item.label}
-                  </div>
-                ))}
-              </div>
+            <div className="space-y-6">
+              {INCLUDED.map((bucket) => (
+                <div key={bucket.title} className="surface-panel rounded-3xl px-6 py-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.32em] text-white/60">{bucket.title}</h3>
+                  <ul className="mt-4 space-y-2 text-sm text-white/70">
+                    {bucket.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-[6px] inline-flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/70" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
 
-              <div className="space-y-6">
-                {INCLUDED.map((bucket) => (
-                  <div key={bucket.title} className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-                    <h3 className="text-sm font-semibold uppercase tracking-[0.32em] text-orange-200/80">{bucket.title}</h3>
-                    <ul className="mt-4 space-y-2 text-sm text-white/70">
-                      {bucket.items.map((item) => (
-                        <li key={item} className="flex items-start gap-3">
-                          <span className="mt-1 text-orange-200/80">
-                            <FaCheckCircle className="h-4 w-4" />
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+            <div className="surface-panel--subtle rounded-3xl px-6 py-6 text-sm text-white/70">
+              “Imaginta operates like our internal digital department—same urgency, same care. Senior thinkers, fast delivery, and documentation that keeps everyone aligned.”
+              <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.28em] text-white/45">COO · D2C Retail Group</p>
+            </div>
+          </motion.div>
 
-              <div className="rounded-3xl border border-white/12 bg-white/[0.04] p-6 text-sm text-white/65">
-                <p>
-                  “Imaginta feels like our internal digital department—same urgency, same care. We get senior thinkers, fast delivery,
-                  and documentation that keeps everyone aligned.”
-                </p>
-                <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.28em] text-white/45">
-                  COO · D2C Retail Group
-                </p>
-              </div>
-            </motion.div>
-          </WarmSpotlight>
-
-          <div className="space-y-6">
+          <motion.div
+            className="space-y-6"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
             {GUARANTEES.map((item, index) => (
-              <WarmSpotlight key={item.heading} className="h-full" intensity={0.66}>
-                <motion.div
-                  className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 text-sm text-white/75 backdrop-blur-xl"
-                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
-                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.07, ease: "easeOut" }}
-                >
-                  <h4 className="text-lg font-heading font-semibold text-white">{item.heading}</h4>
-                  <p className="mt-2 text-white/65">{item.detail}</p>
-                </motion.div>
-              </WarmSpotlight>
+              <div key={item.heading} className="surface-panel rounded-3xl px-6 py-6 text-sm text-white/75">
+                <h4 className="text-lg font-heading font-semibold text-white">{item.heading}</h4>
+                <p className="mt-2 text-white/70">{item.detail}</p>
+              </div>
             ))}
 
-            <WarmSpotlight className="h-full" intensity={0.64}>
-              <motion.div
-                className="rounded-3xl border border-white/12 bg-white/[0.05] p-6 text-sm text-white/70 backdrop-blur-xl"
-                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
-                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.24, ease: "easeOut" }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">What happens after 12 months?</p>
-                <p className="mt-3 text-white/65">
-                  Most clients renew or expand their plan. We review outcomes, budget, and new ambition lines before confirming the next
-                  cycle. Your documentation, assets, and deliverables remain yours either way.
-                </p>
-              </motion.div>
-            </WarmSpotlight>
-          </div>
+            <div className="surface-panel rounded-3xl px-6 py-6 text-sm text-white/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">After the first year</p>
+              <p className="mt-3">
+                Most teams renew or expand. We review outcomes, budget, and ambition lines before confirming the next cycle. Every asset, insight, and playbook remains yours either way.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

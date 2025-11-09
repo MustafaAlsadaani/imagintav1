@@ -9,7 +9,7 @@ export default function BlogIntro() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(160deg,#04020b,#0a1324)] py-24 lg:py-28">
+    <section className="relative overflow-hidden section-surface-soft py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(236,72,153,0.18),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.16),transparent_60%)]" />
       <div className="relative z-10 mx-auto max-w-5xl px-5 text-white text-center">
         <motion.span

@@ -77,22 +77,22 @@ export default function OurStory() {
 
           <div className="flex-1 space-y-10">
             {MILESTONES.map((milestone, index) => (
-              <WarmSpotlight key={milestone.year} className="h-full" intensity={0.7}>
+              <WarmSpotlight key={milestone.year} className="h-full">
                 <motion.article
-                  className="grid gap-6 rounded-[32px] border border-white/12 bg-white/[0.06] p-8 text-sm text-white/75 backdrop-blur-2xl md:grid-cols-[0.2fr_0.8fr]"
+                  className="grid gap-6 rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/80 p-8 text-sm text-cyber-text md:grid-cols-[0.2fr_0.8fr]"
                   initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : index * 0.07, ease: "easeOut" }}
                 >
                   <div className="flex items-start justify-between gap-4 md:flex-col md:text-left">
-                    <span className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{milestone.year}</span>
-                    <span className="hidden h-16 w-[2px] rounded-full bg-white/20 md:block" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">{milestone.year}</span>
+                    <span className="hidden h-16 w-[2px] rounded-full bg-cyber-neutral/30 md:block" />
                   </div>
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-white md:text-xl">{milestone.headline}</h3>
-                    <p className="text-white/65">{milestone.detail}</p>
-                    <p className="text-sm font-semibold text-orange-200/80">{milestone.takeaway}</p>
+                    <p className="text-cyber-text-secondary">{milestone.detail}</p>
+                    <p className="text-sm font-semibold text-cyber-primary">{milestone.takeaway}</p>
                   </div>
                 </motion.article>
               </WarmSpotlight>

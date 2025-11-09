@@ -2,14 +2,15 @@
 
 import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import WarmSpotlight from "@/components/ui/WarmSpotlight";
+import { FiClock, FiRefreshCw } from "react-icons/fi";
+
+type AuthorKey = "mustafa" | "sero" | "falcon";
 
 interface Post {
-  author: "mustafa" | "sero" | "falcon";
+  author: AuthorKey;
   content: string;
 }
 
-// master post list reused for rotation
 const MASTER_POSTS: Post[] = [
   { author: "mustafa", content: "Your website is your 24/7 salesman. Make it fast, friendly, and mobile-ready. A happy visitor becomes a loyal customer. Ready to shine online? Let's talk! #WebDevLife" },
   { author: "mustafa", content: "SEO tip: Write like you talk to a friend. Use simple words, answer real questions. Google loves helpful content, and so do people. Start today! #MarketingMadeEasy" },
@@ -113,32 +114,43 @@ const MASTER_POSTS: Post[] = [
   { author: "falcon", content: "Biz growth: Reflect Sunday night. What worked? What’s next? 15 mins planning = calm week. End strong, start stronger! #WeeklyReset" },
 ];
 
-const AUTHORS = {
+const AUTHORS: Record<
+  AuthorKey,
+  {
+    name: string;
+    handle: string;
+    role: string;
+    accent: string;
+    badge: string;
+  }
+> = {
   mustafa: {
     name: "Mustafa",
     handle: "@mustafa.codes",
-    accent: "from-orange-400 to-orange-600",
     role: "Creative Technologist",
+    accent: "from-cyber-primary to-cyber-highlight",
+    badge: "CT",
   },
   sero: {
     name: "Sero",
     handle: "@sero.designs",
-    accent: "from-pink-400 to-pink-600",
-    role: "Design Lead",
+    role: "Experience Director",
+    accent: "from-[#b026ff] to-[#ff35a6]",
+    badge: "SD",
   },
   falcon: {
     name: "Falcon",
     handle: "@falcon.growth",
-    accent: "from-cyan-400 to-cyan-500",
     role: "Growth Strategist",
+    accent: "from-[#39ff14] to-[#00ff95]",
+    badge: "FG",
   },
-} as const;
+};
 
 function getCollectionSeed() {
   if (typeof window !== "undefined") {
     const now = new Date();
-    const hourSeed = Math.floor(now.getTime() / (60 * 60 * 1000));
-    return hourSeed;
+    return Math.floor(now.getTime() / (60 * 60 * 1000));
   }
   return 0;
 }
@@ -150,7 +162,7 @@ function getPseudoRandom(index: number, salt = 1) {
 function buildFeed() {
   const seed = getCollectionSeed();
   const offset = seed % MASTER_POSTS.length;
-  const slice = [...MASTER_POSTS.slice(offset), ...MASTER_POSTS.slice(0, offset)].slice(0, 5);
+  const slice = [...MASTER_POSTS.slice(offset), ...MASTER_POSTS.slice(0, offset)].slice(0, 8);
 
   return slice.map((post, index) => {
     const hoursAgo = index + (seed % 3);
@@ -165,7 +177,7 @@ function buildFeed() {
   });
 }
 
-export default function BlogFeed() {
+export default function BlogStream() {
   const prefersReducedMotion = useReducedMotion();
   const { feed, generatedAt } = useMemo(() => {
     const posts = buildFeed();
@@ -175,85 +187,149 @@ export default function BlogFeed() {
   if (!feed.length) return null;
 
   const [headlinePost, ...otherPosts] = feed;
-  const lastUpdatedLabel = generatedAt.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  const accentAuthor = AUTHORS[headlinePost.author];
+  const gridPosts = otherPosts.slice(0, 3);
+  const timelinePosts = otherPosts.slice(3);
+
+  const lastUpdatedLabel = generatedAt.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
   const nextRefresh = new Date(generatedAt);
   nextRefresh.setMinutes(0, 0, 0);
   nextRefresh.setHours(nextRefresh.getHours() + 1);
   const nextRefreshLabel = nextRefresh.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
 
   return (
-    <section id="feed" className="relative overflow-hidden section-surface-alt py-24 lg:py-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_70%)] opacity-70" />
-
-      <div className="relative z-10 mx-auto max-w-5xl px-5">
-        <div className="mb-8 flex flex-col items-start justify-between gap-4 rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/78 px-6 py-5 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary sm:flex-row sm:items-center">
-          <span>Last updated · {lastUpdatedLabel}</span>
-          <span>Next refresh in the top of the hour · {nextRefreshLabel}</span>
+    <section id="signal-stream" className="relative overflow-hidden border-b border-cyber-neutral/20 bg-cyber-bg py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_80%,rgba(57,255,20,0.12),transparent_60%),radial-gradient(circle_at_90%_20%,rgba(176,38,255,0.14),transparent_62%)]" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4">
+        <div className="mb-10 grid gap-4 rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/82 px-6 py-5 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary md:grid-cols-2">
+          <span className="inline-flex items-center gap-2">
+            <FiClock className="h-4 w-4 text-cyber-primary" />
+            Last updated · {lastUpdatedLabel}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <FiRefreshCw className="h-4 w-4 text-cyber-highlight" />
+            Next refresh · {nextRefreshLabel}
+          </span>
         </div>
 
-        <WarmSpotlight>
-          <motion.article
-            className="mb-10 grid gap-4 rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/82 p-6 text-sm text-cyber-text md:grid-cols-[0.75fr_0.25fr]"
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
-            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-          >
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary">
-                <span>{AUTHORS[headlinePost.author].name}</span>
+        <motion.article
+          className="mb-12 overflow-hidden rounded-[36px] border border-cyber-neutral/35 bg-cyber-bg/88"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <div className="relative flex flex-col gap-0 lg:grid lg:grid-cols-[0.7fr_0.3fr]">
+            <div className="border-b border-cyber-neutral/30 bg-[radial-gradient(circle_at_20%_8%,rgba(0,255,255,0.2),transparent_64%)] p-8 lg:border-b-0 lg:border-r lg:p-10">
+              <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] uppercase tracking-[0.32em] text-cyber-text-secondary/85">
+                <span>{accentAuthor.name}</span>
                 <span>{headlinePost.postedAt.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</span>
               </div>
-              <p className="mt-4 text-xl font-heading font-semibold text-white">
-                {headlinePost.content.split(" ").slice(0, 10).join(" ")}
+              <h2 className="mt-6 text-3xl font-heading font-semibold text-white md:text-[2.3rem]">
+                {headlinePost.content.split(" ").slice(0, 18).join(" ")}
+                {headlinePost.content.split(" ").length > 18 ? "…" : ""}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-cyber-text-secondary">{headlinePost.content}</p>
+            </div>
+            <div className="flex flex-col justify-between gap-6 p-8 text-sm text-cyber-text">
+              <div>
+                <div className={`inline-flex items-center gap-3 rounded-full border border-cyber-primary/30 bg-gradient-to-r ${accentAuthor.accent} px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-white`}>
+                  <span>{accentAuthor.badge}</span>
+                  <span>{accentAuthor.role}</span>
+                </div>
+                <p className="mt-4 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary">{accentAuthor.handle}</p>
+              </div>
+              <p className="text-xs uppercase tracking-[0.32em] text-cyber-text-secondary/80">
+                Signal strength measured across launch velocity, experience scores, and growth telemetry.
               </p>
-              <p className="mt-3 text-base leading-relaxed text-cyber-text-secondary">{headlinePost.content}</p>
             </div>
-            <div className="flex flex-col justify-between rounded-3xl border border-cyber-neutral/30 bg-cyber-bg/76 p-4 text-[11px] uppercase tracking-[0.35em] text-cyber-text-secondary">
-              <span>{AUTHORS[headlinePost.author].role}</span>
-              <span>{AUTHORS[headlinePost.author].handle}</span>
-            </div>
-          </motion.article>
-        </WarmSpotlight>
+          </div>
+        </motion.article>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {otherPosts.map((post, index) => {
+        <div className="grid gap-6 md:grid-cols-3">
+          {gridPosts.map((post, index) => {
             const author = AUTHORS[post.author];
             return (
-              <WarmSpotlight key={post.id}>
-                <motion.article
-                  className="flex h-full flex-col justify-between rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/80 p-6 text-sm text-cyber-text"
-                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
-                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.04, ease: "easeOut" }}
-                >
+              <motion.article
+                key={post.id}
+                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-cyber-neutral/35 bg-cyber-bg/86 p-6 text-sm text-cyber-text transition-all duration-300 hover:border-cyber-primary/50 hover:bg-cyber-neutral/40"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.45 }}
+                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.05, ease: "easeOut" }}
+              >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(176,38,255,0.22),transparent_72%)] blur-2xl" />
+                </div>
+                <div className="relative">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-full border border-cyber-neutral/30 bg-cyber-bg/74 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-cyber-neutral/35 bg-cyber-bg/72 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">
                         {author.name}
                       </div>
                       <p className="mt-2 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary/80">{author.role}</p>
                     </div>
-                    <div
-                      className={`flex h-10 w-10 flex-none items-center justify-center rounded-full border border-cyber-primary/30 bg-gradient-to-br ${author.accent} text-xs font-semibold text-white`}
-                    >
-                      {author.name.slice(0, 2).toUpperCase()}
+                    <div className={`flex h-11 w-11 flex-none items-center justify-center rounded-full border border-cyber-primary/30 bg-gradient-to-br ${author.accent} text-xs font-semibold text-white`}>
+                      {author.badge}
                     </div>
                   </div>
-
                   <p className="mt-4 text-base leading-relaxed text-cyber-text">{post.content}</p>
-
-                  <div className="mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.32em] text-cyber-text-secondary/80">
-                    <span>{author.handle}</span>
-                    <span>{post.postedAt.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</span>
-                  </div>
-                </motion.article>
-              </WarmSpotlight>
+                </div>
+                <div className="relative mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.32em] text-cyber-text-secondary/80">
+                  <span>{author.handle}</span>
+                  <span>{post.postedAt.toLocaleString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
+                </div>
+              </motion.article>
             );
           })}
         </div>
+
+        {timelinePosts.length > 0 && (
+          <motion.div
+            className="relative mt-16 rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/85 p-8"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.32em] text-cyber-text-secondary/85">
+              <span>Signal timeline</span>
+              <span>Telemetry across the last cycle</span>
+            </div>
+            <div className="relative">
+              <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-cyber-primary/40 via-cyber-neutral/40 to-transparent sm:left-1/2" />
+              <div className="space-y-10 sm:space-y-0 sm:[&>article:nth-child(odd)]:mr-auto sm:[&>article:nth-child(odd)]:translate-x-[-12%] sm:[&>article:nth-child(even)]:ml-auto sm:[&>article:nth-child(even)]:translate-x-[12%]">
+                {timelinePosts.map((post, index) => {
+                  const author = AUTHORS[post.author];
+                  return (
+                    <motion.article
+                      key={post.id}
+                      className="relative mt-10 max-w-xl rounded-[24px] border border-cyber-neutral/30 bg-cyber-bg/82 p-6 text-sm text-cyber-text shadow-[0_24px_90px_rgba(4,10,24,0.42)] sm:mt-12"
+                      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24, scale: 0.97 }}
+                      whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, amount: 0.55 }}
+                      transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.04, ease: "easeOut" }}
+                    >
+                      <div className="absolute left-[-15px] top-6 hidden size-3 rounded-full bg-cyber-primary shadow-[0_0_12px_rgba(0,255,255,0.65)] sm:block" />
+                      <div className="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.32em] text-cyber-text-secondary/75">
+                        <span>{author.handle}</span>
+                        <span>{post.postedAt.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</span>
+                      </div>
+                      <p className="mt-4 text-base leading-relaxed text-cyber-text">{post.content}</p>
+                    </motion.article>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
 }
+

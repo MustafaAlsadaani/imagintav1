@@ -20,7 +20,7 @@ export default function AboutCTA() {
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Ready to design the next chapter together?
+          Ready to transform your business with Imaginta?
         </motion.h2>
         <motion.p
           className="mx-auto mt-4 max-w-3xl text-base text-white/80 sm:text-lg"
@@ -29,8 +29,8 @@ export default function AboutCTA() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
         >
-          Let’s align on vision, budget, and first wins. Imaginta will script the experience, assemble the squad, and deliver momentum
-          you can measure.
+          Tell us about your goals, budget, and timeline. We will share the first steps, who will be on your project, and how we measure
+          success.
         </motion.p>
 
         <motion.div
@@ -42,13 +42,13 @@ export default function AboutCTA() {
         >
           <Button asChild variant="gradient" size="lg" className="rounded-full px-8 py-4 text-base">
             <Link href="/contact" className="flex items-center gap-2">
-              Schedule a strategy call
+              Contact us today
               <FiArrowUpRight className="h-5 w-5" />
             </Link>
           </Button>
           <Button asChild variant="glass" size="lg" className="rounded-full px-7 py-4 text-base text-white/80">
             <Link href="/services" className="flex items-center gap-2">
-              View our playbook
+              Explore our services
               <FiArrowUpRight className="h-5 w-5" />
             </Link>
           </Button>

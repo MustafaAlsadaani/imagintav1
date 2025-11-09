@@ -42,7 +42,7 @@ export default function OurCulture() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#05030e,#0f172a)] py-28 lg:py-32">
+    <section className="relative overflow-hidden section-surface-alt py-28 lg:py-32">
       <GradientOrb color="neon" size="lg" className="left-[-20%] top-[10%] opacity-65" />
       <GradientOrb color="electric" size="md" className="right-[-16%] bottom-[12%] opacity-55" />
 
@@ -67,45 +67,45 @@ export default function OurCulture() {
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[0.55fr_0.45fr]">
-          <WarmSpotlight intensity={0.7}>
+          <WarmSpotlight>
             <motion.div
-              className="space-y-8 rounded-[36px] border border-white/12 bg-white/[0.06] p-10 backdrop-blur-2xl"
+              className="space-y-8 rounded-[36px] border border-cyber-neutral/35 bg-cyber-bg/82 p-10 text-sm text-cyber-text"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
             >
               <div className="space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Studio mindset</p>
-                <p className="text-xl leading-relaxed text-white/80 md:text-2xl">{CULTURE_QUOTE}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">Studio mindset</p>
+                <p className="text-xl leading-relaxed text-cyber-text md:text-2xl">{CULTURE_QUOTE}</p>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 {OPERATING_PRINCIPLES.map((principle) => (
-                  <div key={principle.title} className="rounded-3xl border border-white/10 bg-white/[0.05] p-5 text-sm text-white/70">
-                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/75">{principle.title}</p>
-                    <p className="mt-3">{principle.description}</p>
+                  <div key={principle.title} className="rounded-3xl border border-cyber-neutral/30 bg-cyber-bg/76 p-5 text-sm text-cyber-text-secondary">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">{principle.title}</p>
+                    <p className="mt-3 text-cyber-text">{principle.description}</p>
                   </div>
                 ))}
               </div>
             </motion.div>
           </WarmSpotlight>
 
-          <WarmSpotlight intensity={0.65}>
+          <WarmSpotlight>
             <motion.div
-              className="space-y-5 rounded-[32px] border border-white/12 bg-white/[0.05] p-8 text-sm text-white/70 backdrop-blur-xl"
+              className="space-y-5 rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/80 p-8 text-sm text-cyber-text"
               initial={prefersReducedMotion ? undefined : { opacity: 0, x: 24 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.45 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Weekly rhythm</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">Weekly rhythm</p>
               {RITUALS.map((ritual) => (
-                <div key={ritual.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/70">{ritual.label}</p>
-                  <p className="mt-2 text-white/65">{ritual.detail}</p>
+                <div key={ritual.label} className="rounded-2xl border border-cyber-neutral/30 bg-cyber-bg/76 px-5 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyber-text-secondary">{ritual.label}</p>
+                  <p className="mt-2 text-cyber-text-secondary">{ritual.detail}</p>
                 </div>
               ))}
-              <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 text-xs uppercase tracking-[0.35em] text-white/60">
+              <div className="rounded-2xl border border-cyber-neutral/30 bg-cyber-bg/76 p-4 text-xs uppercase tracking-[0.35em] text-cyber-text-secondary">
                 Precision • Empathy • Curiosity • Accountability
               </div>
             </motion.div>

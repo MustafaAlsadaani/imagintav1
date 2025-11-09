@@ -1,14 +1,13 @@
 import PageTransition from "@/components/layout/PageTransition";
-import ServicesHero from "@/components/sections/ServicesHero";
-import ServicesDetailList from "@/components/sections/ServicesDetailList";
-import ServicesCTA from "@/components/sections/ServicesCTA";
-import ServicesSinglePlan from "@/components/sections/ServicesSinglePlan";
-import ServicesProcess from "@/components/sections/ServicesProcess";
+import ServicesHero from "@/components/services/ServicesHero";
+import ServicesGrid from "@/components/services/ServicesGrid";
+import ServicesBundles from "@/components/services/ServicesBundles";
+import ServicesRaceCTA from "@/components/services/ServicesRaceCTA";
 
 export const metadata = {
-  title: "Services | Imaginta One Partnership Plan",
+  title: "Imaginta Services – Empower Your Business",
   description:
-    "Imaginta offers a single yearly partnership plan at €1,999. Strategy, design, development and marketing packed into one clear engagement for ambitious teams.",
+    "Discover Imaginta’s services in web development, marketing, graphic design, business development, and cyber security. We help your business grow online with clear plans and friendly support.",
   alternates: {
     canonical: "/services",
   },
@@ -17,12 +16,11 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <PageTransition>
-      <main className="flex flex-col bg-background">
+      <main className="flex flex-col bg-cyber-bg">
         <ServicesHero />
-        <ServicesDetailList />
-        <ServicesSinglePlan />
-        <ServicesProcess />
-        <ServicesCTA />
+        <ServicesGrid />
+        <ServicesBundles />
+        <ServicesRaceCTA />
       </main>
     </PageTransition>
   );

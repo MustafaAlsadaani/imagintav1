@@ -1,9 +1,9 @@
 import AboutPageClient from "@/components/pages/AboutPageClient";
 
 export const metadata = {
-  title: "About Imaginta | Creative Digital Studio",
+  title: "About Imaginta | Creative Digital Agency",
   description:
-    "Meet the Imaginta studio. Discover our story, mission, culture, and the team crafting immersive digital experiences for ambitious brands.",
+    "Learn how Imaginta helps businesses grow online with friendly experts in web development, marketing, design, business development, and cyber security.",
   alternates: {
     canonical: "/about",
   },

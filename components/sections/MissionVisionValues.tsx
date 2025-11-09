@@ -49,7 +49,7 @@ export default function MissionVisionValues() {
   const activeStatement = CORE_STATEMENTS.find((item) => item.key === activeKey) ?? CORE_STATEMENTS[0];
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(160deg,rgba(20,11,35,0.9),rgba(5,3,14,0.95))] py-28 lg:py-32">
+    <section className="relative overflow-hidden section-surface-soft py-28 lg:py-32">
       <GradientOrb color="cyber" size="lg" className="left-[-18%] top-[-22%] opacity-70" />
       <GradientOrb color="electric" size="md" className="right-[-15%] bottom-[-15%] opacity-60" />
 
@@ -84,19 +84,19 @@ export default function MissionVisionValues() {
             {CORE_STATEMENTS.map((statement) => {
               const isActive = statement.key === activeKey;
               return (
-                <WarmSpotlight key={statement.key} intensity={0.65}>
+                <WarmSpotlight key={statement.key}>
                   <button
                     type="button"
                     onClick={() => setActiveKey(statement.key)}
                     className={`group flex w-full items-center justify-between rounded-[26px] border px-6 py-4 text-left transition-colors duration-300 ${
                       isActive
-                        ? "border-orange-300/50 bg-white/[0.12] text-white"
-                        : "border-white/10 bg-white/[0.05] text-white/65 hover:border-white/20 hover:text-white"
+                        ? "border-cyber-primary/35 bg-cyber-bg/80 text-white"
+                        : "border-cyber-neutral/30 bg-cyber-bg/75 text-cyber-text-secondary hover:border-cyber-primary/35 hover:text-white"
                     }`}
                   >
                     <span className="text-sm font-semibold uppercase tracking-[0.32em]">{statement.title}</span>
                     <motion.span
-                      className="text-xs uppercase tracking-[0.4em] text-orange-200/80"
+                      className="text-xs uppercase tracking-[0.4em] text-cyber-text-secondary"
                       animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -6 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -108,30 +108,30 @@ export default function MissionVisionValues() {
             })}
           </div>
 
-          <WarmSpotlight intensity={0.7}>
+          <WarmSpotlight>
             <motion.div
               key={activeStatement.key}
-              className="surface-card relative overflow-hidden rounded-[32px] border border-white/15 p-10 text-sm text-white/75"
+              className="relative overflow-hidden rounded-[32px] border border-cyber-neutral/35 bg-cyber-bg/80 p-10 text-sm text-cyber-text"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(236,72,153,0.18),transparent_60%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,255,255,0.12),transparent_65%)] opacity-60" />
               <div className="relative z-10 space-y-6">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.35em] text-orange-200/80">{activeStatement.title}</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.35em] text-cyber-text-secondary">{activeStatement.title}</span>
                   <h3 className="mt-3 text-2xl font-heading font-semibold text-white md:text-3xl">{activeStatement.blurb}</h3>
                 </div>
 
-                <ul className="grid gap-3 text-sm text-white/65 sm:grid-cols-2">
+                <ul className="grid gap-3 text-sm text-cyber-text-secondary sm:grid-cols-2">
                   {activeStatement.bullets.map((bullet) => (
-                    <li key={bullet} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                    <li key={bullet} className="rounded-2xl border border-cyber-neutral/30 bg-cyber-bg/75 px-4 py-3">
                       {bullet}
                     </li>
                   ))}
                 </ul>
 
-                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 text-sm text-white/60">
+                <div className="rounded-2xl border border-cyber-neutral/30 bg-cyber-bg/75 p-5 text-sm text-cyber-text-secondary">
                   “Our team translates bold vision into accountable delivery. Strategy writers, motion designers, engineers, and growth
                   analysts move in lockstep. Clients never wonder what comes next.”
                 </div>

@@ -6,25 +6,26 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 ease-cinematic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(0,229,229,0.55)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#040a16] disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
         default:
-          "bg-electric text-background shadow-[0_18px_45px_rgba(99,102,241,0.35)] hover:-translate-y-[2px] hover:shadow-[0_26px_60px_rgba(99,102,241,0.45)]",
+          "bg-premium-cyan text-premium-bg shadow-premium hover:-translate-y-[3px] hover:bg-premium-magenta hover:text-white hover:shadow-[0_26px_58px_rgba(5,15,32,0.62),0_0_44px_rgba(230,0,230,0.28)] active:bg-premium-magenta/80 active:scale-95",
         gradient:
-          "bg-[linear-gradient(120deg,#f97316,#7c3aed,#0ea5e9)] animate-gradient-pan text-white shadow-[0_22px_55px_rgba(139,92,246,0.32),0_14px_38px_rgba(6,182,212,0.25)] transition-[transform,box-shadow,filter] hover:shadow-[0_30px_70px_rgba(139,92,246,0.42),0_20px_48px_rgba(6,182,212,0.3)] hover:brightness-[1.05] active:scale-[0.98]",
+          "bg-premium-cyan text-premium-bg shadow-[0_16px_38px_rgba(5,15,32,0.45)] transition-[transform,box-shadow,color,background-color] duration-500 hover:-translate-y-[3px] hover:bg-premium-cyan/90 hover:text-premium-bg active:bg-premium-cyan/85 active:scale-95",
         glass:
-          "glass-creative text-white/75 hover:text-white hover:bg-white/12 hover:shadow-[0_0_32px_rgba(6,182,212,0.22)] hover:border-white/20 active:scale-[0.98]",
+          "glass-creative text-premium-text-secondary hover:text-white hover:shadow-[0_0_36px_rgba(0,229,229,0.26)] hover:border-[rgba(230,0,230,0.4)] active:scale-[0.98]",
         glow:
-          "bg-[linear-gradient(140deg,#a855f7,#0ea5e9)] text-white shadow-[0_0_45px_rgba(14,165,233,0.45)] hover:shadow-[0_0_70px_rgba(236,72,153,0.45)]",
+          "bg-[linear-gradient(140deg,#00e5e5,#e600e6)] text-white shadow-[0_0_38px_rgba(0,229,229,0.32)] hover:shadow-[0_0_64px_rgba(230,0,230,0.34)]",
         secondary:
-          "border border-white/15 bg-background/40 text-foreground-secondary hover:text-foreground hover:border-white/25 hover:bg-white/10 active:scale-[0.98]",
+          "border border-[rgba(0,229,229,0.22)] bg-[rgba(12,22,38,0.6)] text-premium-text-secondary hover:text-white hover:border-[rgba(0,229,229,0.35)] hover:bg-[rgba(16,28,46,0.8)] active:scale-95",
         outline:
-          "border border-electric/40 text-electric hover:bg-electric/10",
+          "border border-[rgba(0,229,229,0.6)] text-premium-cyan hover:bg-[rgba(0,229,229,0.08)] hover:text-white",
         ghost:
-          "text-foreground-secondary hover:text-electric hover:bg-white/5",
-        link: "text-electric underline-offset-4 hover:text-cyber hover:underline",
+          "text-premium-text-secondary hover:text-premium-cyan hover:bg-[rgba(12,23,39,0.65)]",
+        link:
+          "text-premium-accent underline-offset-4 hover:text-premium-green hover:underline hover:[text-shadow:0_0_4px_rgba(50,205,50,0.2)]",
       },
       size: {
         default: "h-11 px-6",
@@ -56,7 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         className={cn(
-          "relative overflow-hidden transition-transform duration-300 ease-cinematic",
+          "relative overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
           ripple && "has-ripple",
           !ripple && "no-ripple",
           isLoading && "button-loading pointer-events-none",

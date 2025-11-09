@@ -1,48 +1,46 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import WarmSpotlight from "@/components/ui/WarmSpotlight";
-import DecorativeLine from "@/components/ui/DecorativeLine";
 
 const STEPS = [
   {
     phase: "Kickoff",
     highlight: "Days 0-10",
-    summary: "Interviews, access, and success metrics agreed. Roadmap and backlog finalised.",
-    touchpoints: ["Founder alignment call", "Tooling + data audit", "Roadmap + backlog delivery"],
+    summary: "Interviews, access, and success metrics aligned. Launch map and backlog delivered to stakeholders.",
+    touchpoints: ["Founder alignment call", "Tooling + telemetry audit", "Roadmap + backlog delivery"],
   },
   {
     phase: "Build & Launch",
     highlight: "Weeks 2-4",
-    summary: "Design, content, and code move together. First launches go live with enablement docs.",
+    summary: "Design, content, and code sprint together. First releases go live with enablement docs and training.",
     touchpoints: ["Design + engineering sprints", "Campaign + asset production", "Launch playbooks + training"],
   },
   {
     phase: "Grow & Optimise",
     highlight: "Monthly",
-    summary: "Each month we review metrics, ship improvements, and prepare the next release wave.",
+    summary: "Metrics reviewed, experiments shipped, and backlog refreshed so the curve keeps climbing.",
     touchpoints: ["Growth + analytics sync", "Backlog refresh", "Enablement + support"],
   },
   {
     phase: "Review & Renew",
     highlight: "Quarterly",
-    summary: "Strategy sessions with leadership, performance deep dives, and planning for the next cycle.",
+    summary: "Leadership roundtables, budget impact review, and planning for the next momentum wave.",
     touchpoints: ["Leader roundtable", "Budget + impact review", "Next-quarter roadmap"],
   },
 ];
 
 const SUPPORT_LAYERS = [
   {
-    title: "Shared workspace",
-    detail: "Every asset, plan, and status update lives in one Notion + Linear workspace we maintain for you.",
+    title: "Shared mission room",
+    detail: "Notion, Linear, and playback archives centralise every asset, update, and decision.",
   },
   {
-    title: "Open communication",
-    detail: "Slack channel with 48h response guarantee, plus weekly office hours and monthly workshops.",
+    title: "Warm communication",
+    detail: "Dedicated Slack channel with <48h responses, weekly office hours, and monthly workshops.",
   },
   {
     title: "Documentation first",
-    detail: "Playbooks, dashboards, and training replays ensure your team stays confident as you scale.",
+    detail: "Playbooks, dashboards, and replays ensure your team stays confident as you scale.",
   },
 ];
 
@@ -50,109 +48,100 @@ export default function ServicesProcess() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section
-      className="relative overflow-hidden bg-background py-28"
-      data-stickman-section="services-process"
-    >
-      <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_top,_rgba(251,191,36,0.2),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(6,182,212,0.2),_transparent_60%)]" />
+    <section className="relative overflow-hidden section-surface py-24 md:py-32">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:radial-gradient(circle_at_12%_12%,rgba(245,168,107,0.28),transparent_55%),radial-gradient(circle_at_84%_14%,rgba(125,211,252,0.22),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 blur-[200px] opacity-55 [background-image:radial-gradient(circle_at_0%_0%,rgba(245,168,107,0.22),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(125,211,252,0.18),transparent_60%)]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4">
-        <div className="text-center">
-          <motion.h2
-            className="text-4xl font-heading font-bold text-white md:text-5xl lg:text-6xl"
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
-            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            The journey we lead together
-          </motion.h2>
-          <div className="mt-6 flex justify-center">
-            <DecorativeLine gradient="aurora" align="center" />
-          </div>
-          <motion.p
-            className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
-            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-          >
-            Every engagement follows a calm, collaborative rhythm. You always know what comes next—and why it matters.
-          </motion.p>
-        </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 lg:px-10">
+        <motion.div
+          className="text-center"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/60">
+            Journey rhythm
+          </span>
+          <h2 className="mt-6 text-balance text-3xl font-heading font-semibold text-white sm:text-4xl lg:text-[3rem]">
+            A calm, warm cadence that keeps every launch moving forward.
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base text-white/70 sm:text-lg">
+            Every engagement follows a predictable rhythm—so you always know what comes next, who is owning it, and how success is measured.
+          </p>
+        </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <WarmSpotlight className="h-full" intensity={0.66}>
-            <motion.div
-              className="relative h-full rounded-[34px] border border-white/12 bg-white/[0.05] p-8 backdrop-blur-2xl"
-              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
-              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.55, ease: "easeOut" }}
-            >
-              <div className="absolute inset-y-8 left-10 hidden w-px bg-gradient-to-b from-orange-400 via-pink-500 to-cyan-400 lg:block" />
-              <div className="space-y-6 lg:pl-16">
-                {STEPS.map((step, index) => (
-                  <motion.div
-                    key={step.phase}
-                    className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 text-sm text-white/75"
-                    initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
-                    whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-white/60">
-                      <span>{step.highlight}</span>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                    </div>
-                    <h3 className="mt-4 text-lg font-heading font-semibold text-white">{step.phase}</h3>
-                    <p className="mt-2 text-white/65">{step.summary}</p>
-                    <ul className="mt-4 space-y-2 text-white/60">
-                      {step.touchpoints.map((touchpoint) => (
-                        <li key={touchpoint} className="flex items-start gap-2">
-                          <span className="mt-[6px] inline-flex h-1.5 w-1.5 rounded-full bg-orange-200/80" />
-                          <span>{touchpoint}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </WarmSpotlight>
-
-          <div className="space-y-6">
-            {SUPPORT_LAYERS.map((layer, index) => (
-              <WarmSpotlight key={layer.title} className="h-full" intensity={0.62}>
+          <motion.div
+            className="surface-panel--lifted rounded-[34px] p-8"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            <div className="space-y-6">
+              {STEPS.map((step, index) => (
                 <motion.div
-                  className="rounded-3xl border border-white/12 bg-white/[0.05] p-6 text-sm text-white/75 backdrop-blur-xl"
-                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 22 }}
+                  key={step.phase}
+                  className="surface-panel rounded-3xl px-6 py-6 text-left"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
+                  viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
                 >
-                  <h4 className="text-lg font-heading font-semibold text-white">{layer.title}</h4>
-                  <p className="mt-2 text-white/65">{layer.detail}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-white/55">
+                    <span>{step.highlight}</span>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-heading font-semibold text-white">{step.phase}</h3>
+                  <p className="mt-2 text-white/70">{step.summary}</p>
+                  <ul className="mt-4 space-y-2 text-white/65">
+                    {step.touchpoints.map((touchpoint) => (
+                      <li key={touchpoint} className="flex items-start gap-2">
+                        <span className="mt-[6px] inline-flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/70" />
+                        <span>{touchpoint}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
-              </WarmSpotlight>
-            ))}
+              ))}
+            </div>
+          </motion.div>
 
-            <WarmSpotlight className="h-full" intensity={0.6}>
+          <motion.div
+            className="space-y-6"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            {SUPPORT_LAYERS.map((layer, index) => (
               <motion.div
-                className="rounded-3xl border border-white/12 bg-white/[0.05] p-6 text-sm text-white/65 backdrop-blur-xl"
-                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 22 }}
+                key={layer.title}
+                className="surface-panel rounded-3xl px-6 py-6 text-sm text-white/75"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.24, ease: "easeOut" }}
+                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
               >
-                <p>
-                  “The cadence is calm and predictable. We get strategy guidance, shipped work, and documentation—without needing to
-                  micromanage or chase updates.”
-                </p>
-                <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.28em] text-white/45">Marketing Director · SaaS</p>
+                <h4 className="text-lg font-heading font-semibold text-white">{layer.title}</h4>
+                <p className="mt-2 text-white/70">{layer.detail}</p>
               </motion.div>
-            </WarmSpotlight>
-          </div>
+            ))}
+
+            <motion.div
+              className="surface-panel rounded-3xl px-6 py-6 text-sm text-white/75"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 22 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.24, ease: "easeOut" }}
+            >
+              <p>
+                “The cadence stays calm and predictable. Leadership gets clarity, the team sees momentum, and launches feel cinematic instead of chaotic.”
+              </p>
+              <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.28em] text-white/45">Marketing Director · SaaS</p>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

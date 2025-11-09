@@ -2,15 +2,13 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-import GradientOrb from "@/components/ui/GradientOrb";
 import DecorativeLine from "@/components/ui/DecorativeLine";
 import WarmSpotlight from "@/components/ui/WarmSpotlight";
 
 const TESTIMONIALS = [
   {
     id: 1,
-    quote:
-      "Imaginta rebuilt our storefront, automated order updates, and trained the staff. Revenue jumped without the usual chaos.",
+    quote: "Imaginta built our online shop and showed us how to use it. We now serve twice as many customers without extra stress.",
     name: "Nadia Vermeulen",
     role: "Owner · Brussels Local Shop",
     metric: "Sales up 40%",
@@ -18,8 +16,7 @@ const TESTIMONIALS = [
   },
   {
     id: 2,
-    quote:
-      "The dashboards speak plain language. Every Monday we know exactly which campaign earns and which one to tweak.",
+    quote: "Weekly updates tell us which ads work. I save hours each month and know exactly where to invest.",
     name: "Jonas De Wilde",
     role: "Founder · De Wilde Coaching",
     metric: "35% more leads",
@@ -27,8 +24,7 @@ const TESTIMONIALS = [
   },
   {
     id: 3,
-    quote:
-      "Launch playbooks, partner approvals, and training recordings—all in one hub. The marketing team finally breathes.",
+    quote: "Our website, emails, and security are now in one place. The team finally has a clear plan to follow.",
     name: "Fatima Al-Taher",
     role: "Marketing Lead · Global Eats",
     metric: "50% repeat orders",
@@ -40,32 +36,32 @@ const STAT_LENSES = [
   {
     label: "Renewal",
     value: "94%",
-    detail: "Clients that extend after year one because momentum compounds.",
+    detail: "Clients stay with us after the first project because results keep improving.",
   },
   {
-    label: "Launch velocity",
+    label: "Average launch time",
     value: "21 days",
-    detail: "Average time from kickoff to the first live experience.",
+    detail: "Most websites and campaigns go live in about three weeks.",
   },
   {
-    label: "Response",
+    label: "Support reply time",
     value: "< 24 hrs",
-    detail: "Partner escalations closed before they slow the team.",
+    detail: "Questions are answered and issues solved within one business day.",
   },
 ];
 
 const SHIFT_SIGNALS = [
   {
-    title: "Approvals on fast-forward",
-    detail: "Vendor green lights and security reviews handled by Imaginta—teams stay focused on core work.",
+    title: "Admin handled for you",
+    detail: "We take care of vendor calls, approvals, and follow-ups so you can focus on serving customers.",
   },
   {
-    title: "Clarity in dashboards",
-    detail: "Weekly pulse reports translate data into clear next moves for founders and marketing leads.",
+    title: "Simple reports",
+    detail: "Short weekly summaries explain what worked and what to adjust next.",
   },
   {
-    title: "Enablement that sticks",
-    detail: "Playbooks, recordings, and office hours mean new tools become daily habits, not another tab.",
+    title: "Training that lasts",
+    detail: "Playbooks and recordings help your staff use new tools with confidence.",
   },
 ];
 
@@ -74,15 +70,13 @@ export default function Testimonials() {
   const [featured, ...supporting] = TESTIMONIALS;
 
   return (
-    <section className="relative overflow-hidden py-32" data-stickman-section="testimonials">
-      <GradientOrb color="electric" size="lg" className="left-[-18%] top-[14%] opacity-60" />
-      <GradientOrb color="accent" size="md" className="bottom-[-20%] right-[-14%] opacity-45" />
-      <div className="absolute inset-0 opacity-[0.18] [background-image:radial-gradient(circle_at_top,_rgba(236,72,153,0.24),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(6,182,212,0.18),_transparent_55%)]" />
+    <section className="section-surface relative overflow-hidden py-32" data-stickman-section="testimonials">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_18%_-12%,rgba(0,229,229,0.16),transparent_60%),radial-gradient(circle_at_82%_110%,rgba(230,0,230,0.14),transparent_62%)]" />
       {!prefersReducedMotion && (
         <motion.div
-          className="aurora-veil absolute inset-0"
-          animate={{ backgroundPosition: ["0% 60%", "100% 40%", "0% 60%"], opacity: [0.3, 0.42, 0.3] }}
-          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,229,229,0.08),transparent_60%),radial-gradient(circle_at_78%_88%,rgba(230,0,230,0.08),transparent_62%)]"
+          animate={{ opacity: [0.08, 0.14, 0.08], scale: [1, 1.02, 1] }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
         />
       )}
 
@@ -95,70 +89,70 @@ export default function Testimonials() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            Client <span className="text-gradient">success</span> in plain words
+            What business owners say about Imaginta
           </motion.h2>
           <div className="mt-6 flex justify-center">
             <DecorativeLine gradient="sunset" align="center" />
           </div>
           <motion.p
-            className="mx-auto mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
+            className="mx-auto mt-6 max-w-3xl text-base text-premium-text-secondary sm:text-lg"
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 22 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
           >
-            Founders and marketing leads told us what changed after launch—faster approvals, clearer dashboards, happier customers. Here’s what keeps them renewing.
+            These business owners explain how working with Imaginta helped them sell more, save time, and understand their results.
           </motion.p>
         </div>
 
         <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-3">
           {STAT_LENSES.map((stat, index) => (
-            <WarmSpotlight key={stat.label} className="h-full" intensity={0.62}>
+            <WarmSpotlight key={stat.label} className="h-full">
               <motion.div
-                className="card-interactive card-shine h-full rounded-3xl border border-white/12 bg-white/[0.04] p-6 text-left text-sm text-white/75 backdrop-blur-xl"
+                className="card-interactive h-full rounded-3xl border border-[rgba(0,229,229,0.2)] bg-[rgba(12,23,39,0.78)] p-6 text-left text-sm text-premium-text"
                 initial={prefersReducedMotion ? undefined : { opacity: 0, y: 18 }}
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.05, ease: "easeOut" }}
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">{stat.label}</p>
-                <p className="mt-2 text-2xl font-heading font-semibold text-white">{stat.value}</p>
-                <p className="mt-3 text-white/60">{stat.detail}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-premium-text-secondary">{stat.label}</p>
+                <p className="mt-2 text-2xl font-heading font-semibold text-premium-green glow-pulse">{stat.value}</p>
+                <p className="mt-3 text-premium-text-secondary">{stat.detail}</p>
               </motion.div>
             </WarmSpotlight>
           ))}
         </div>
 
         <div className="mx-auto mt-16 grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <WarmSpotlight className="h-full" intensity={0.68}>
+          <WarmSpotlight className="h-full">
             <motion.article
-              className="premium-card relative flex h-full flex-col gap-8 rounded-[36px] border border-white/12 bg-white/[0.05] p-10 text-left text-sm text-white/75 backdrop-blur-2xl"
+              className="relative flex h-full flex-col gap-8 rounded-[36px] border border-[rgba(0,229,229,0.2)] bg-[rgba(12,23,39,0.82)] p-10 text-left text-sm text-premium-text"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 26 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">Signal from the field</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-premium-text-secondary">Featured story</p>
                 <h3 className="mt-3 text-2xl font-heading font-semibold text-white sm:text-3xl">
-                  “Imaginta feels like a hidden department—launching, reporting, and tuning everything without needing direction.”
+                  “Imaginta feels like part of our team. They handle the website, marketing, and reports while we focus on our clients.”
                 </h3>
-                <div className="mt-5 flex flex-col gap-3 text-[13px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
+                <div className="mt-5 flex flex-col gap-3 text-[13px] text-premium-text-secondary sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="font-semibold text-white">Sofia Michiels</p>
-                    <p className="text-white/60">COO · Northern Lane Logistics</p>
+                    <p className="text-premium-text-secondary">COO · Northern Lane Logistics</p>
                   </div>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/65">
-                    Renewed 3x
+                  <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,229,229,0.22)] bg-[rgba(12,23,39,0.75)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-premium-text-secondary">
+                    Working together since 2021
                   </span>
                 </div>
               </div>
 
               <div className="grid gap-5 sm:grid-cols-3">
                 {SHIFT_SIGNALS.map((signal) => (
-                  <div key={signal.title} className="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-orange-200/70">{signal.title}</p>
-                    <p className="mt-2 text-white/60">{signal.detail}</p>
+                  <div key={signal.title} className="rounded-2xl border border-[rgba(0,229,229,0.2)] bg-[rgba(12,23,39,0.74)] p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-premium-text-secondary">{signal.title}</p>
+                    <p className="mt-2 text-premium-text-secondary">{signal.detail}</p>
                   </div>
                 ))}
               </div>
@@ -167,24 +161,24 @@ export default function Testimonials() {
 
           <div className="space-y-6">
             {supporting.map((story, index) => (
-              <WarmSpotlight key={story.id} className="h-full" intensity={0.62}>
+              <WarmSpotlight key={story.id} className="h-full">
                 <motion.article
-                  className="card-interactive card-shine relative flex h-full flex-col gap-6 rounded-3xl border border-white/10 bg-white/[0.05] p-6 text-left text-sm text-white/80 backdrop-blur-xl"
+                  className="card-interactive relative flex h-full flex-col gap-6 rounded-3xl border border-[rgba(0,229,229,0.2)] bg-[rgba(12,23,39,0.78)] p-6 text-left text-sm text-premium-text"
                   initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08, ease: "easeOut" }}
                 >
-                  <FaQuoteLeft className="text-3xl text-orange-200/25" aria-hidden="true" />
-                  <p className="leading-relaxed text-white/90">“{story.quote}”</p>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                  <FaQuoteLeft className="text-3xl text-premium-text-secondary/40" aria-hidden="true" />
+                  <p className="leading-relaxed text-white">“{story.quote}”</p>
+                  <div className="flex items-center justify-between border-t border-[rgba(0,229,229,0.14)] pt-4">
                     <div>
                       <p className="text-sm font-semibold text-white">{story.name}</p>
-                      <p className="text-[12px] text-white/60">{story.role}</p>
+                      <p className="text-[12px] text-premium-text-secondary">{story.role}</p>
                     </div>
-                    <div className="text-right text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-200/75">
+                    <div className="text-right text-[11px] font-semibold uppercase tracking-[0.28em] text-premium-text-secondary">
                       <p>{story.industry}</p>
-                      <p className="mt-1 text-white/60 normal-case tracking-normal">{story.metric}</p>
+                      <p className="mt-1 text-premium-green normal-case tracking-normal glow-pulse">{story.metric}</p>
                     </div>
                   </div>
                 </motion.article>

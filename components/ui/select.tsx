@@ -16,7 +16,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full items-center justify-between rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+      "flex h-10 w-full items-center justify-between rounded-lg border border-[rgba(0,229,229,0.22)] bg-[rgba(12,23,39,0.68)] px-3 py-2 text-sm text-premium-text shadow-[0_12px_26px_rgba(5,15,32,0.45)] transition-all duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] focus:outline-none focus:ring-2 focus:ring-[rgba(50,205,50,0.3)] focus:border-[rgba(0,229,229,0.6)] focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-60",
       className
     )}
     {...props}
@@ -65,7 +65,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95",
+        "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-lg border border-[rgba(0,229,229,0.18)] bg-[rgba(12,23,39,0.95)] text-premium-text shadow-[0_26px_64px_rgba(5,15,32,0.55)] animate-in fade-in-0 zoom-in-95 backdrop-blur-lg",
         position === "popper" && "translate-y-1",
         className
       )}
@@ -88,7 +88,11 @@ const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
 >(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label ref={ref} className={cn("px-2 py-1.5 text-xs font-semibold text-muted-foreground", className)} {...props} />
+  <SelectPrimitive.Label
+    ref={ref}
+    className={cn("px-2 py-1.5 text-xs font-semibold uppercase tracking-[0.32em] text-premium-text-secondary", className)}
+    {...props}
+  />
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
@@ -99,7 +103,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm text-premium-text outline-none transition-colors duration-300 ease-[cubic-bezier(0.22,0.61,0.36,1)] focus:bg-[rgba(0,229,229,0.12)] focus:text-white data-[highlighted]:bg-[rgba(50,205,50,0.12)] data-[highlighted]:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-40",
       className
     )}
     {...props}
